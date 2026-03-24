@@ -2,12 +2,12 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
+title: Bo Zheng's personal website # the website title (if blank, full name will be used instead)
+first_name: Bo
+middle_name: 
+last_name: Zheng
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+  email: bo.zheng.2020@gmail.com 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Personal site of Boz — mathematics, machine learning, and things in between.
 footer_text: >
@@ -16,7 +16,15 @@ footer_text: >
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 keywords: mathematics, machine-learning, research, blog # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+
+# -----------------------------------------------------------------------------
+# Polyglot (i18n)
+# -----------------------------------------------------------------------------
+languages: ["en", "zh"]
+default_lang: "en"
+exclude_from_localization: ["assets", "javascript", "images", "css", "public"]
+parallel_localization: false
+icon:  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://bozh3ng.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -220,6 +228,7 @@ plugins:
   - jekyll-toc
   - jekyll-twitter-plugin
   - jemoji
+  - jekyll-polyglot
 
 # Sitemap settings
 defaults:

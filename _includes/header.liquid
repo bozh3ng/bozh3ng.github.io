@@ -126,6 +126,18 @@
             </li>
           {% endif %}
           {% if site.enable_darkmode %}
+            <!-- Language Switcher -->
+            {% if site.languages.size > 1 %}
+              <li class="nav-item">
+                {% for lang in site.languages %}
+                  {% if lang != site.active_lang %}
+                    <a class="nav-link" href="{% if lang == site.default_lang %}{{ page.url }}{% else %}/{{ lang }}{{ page.url }}{% endif %}">
+                      {% if lang == 'en' %}EN{% elsif lang == 'zh' %}ZH{% else %}{{ lang | upcase }}{% endif %}
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              </li>
+            {% endif %}
             <!-- Toogle theme mode -->
             <li class="toggle-container">
               <button id="light-toggle" title="Change theme">
