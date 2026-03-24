@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://bozh3ng.github.io/sitemap.xml
