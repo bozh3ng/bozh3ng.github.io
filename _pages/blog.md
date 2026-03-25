@@ -1,9 +1,9 @@
 ---
 layout: default
-permalink: /blog/
+permalink: /
 title: blog
 nav: true
-nav_order: 1
+nav_order: 0
 pagination:
   enabled: true
   collection: posts
@@ -23,9 +23,9 @@ pagination:
 
 {% if blog_name_size > 0 or blog_description_size > 0 %}
 
-  <div class="header-bar">
-    <h1>{{ site.blog_name }}</h1>
-    <h2>{{ site.blog_description }}</h2>
+  <div class="header-bar" style="text-align: left;">
+    <h3 style="margin-bottom: 0;">{{ site.blog_name }}</h3>
+    <p style="opacity: 0.7;">{{ site.blog_description }}</p>
   </div>
   {% endif %}
 
