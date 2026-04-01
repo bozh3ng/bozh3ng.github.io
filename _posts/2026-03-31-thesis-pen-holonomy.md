@@ -20,7 +20,7 @@ $$F \circ \rho(g) = \rho(g) \circ F \quad \forall\, g \in G$$
 
 where $\rho : G \to GL(V)$ is a representation.
 
-This works when the data space is homogeneous - $G$ acts transitively on this space. But many real data spaces are not homogeneous. A robot's configuration space has regions of free motion and regions near joint limits. A molecular energy landscape has flat basins and sharp saddle points. Forcing the same symmetry everywhere is geometrically wrong: it respects symmetries that don't exist in flat regions and fails to capture the path-dependence that curvature introduces.
+This works when the data space is homogeneous - $G$ acts transitively on this space. But many real data spaces are not homogeneous. A robot's configuration space has regions of free motion and regions near joint limits. A molecular energy landscape has flat basins and sharp saddle points. Forcing the same symmetry everywhere is geometrically wrong: it respects symmetries that don't exist in flat regions and fails to capture the path-dependence that curvature introduces. 
 
 The deeper issue is that features at different points live in different fibers (usually we use tangent space in manifold learning). A feature at $x \in M$ belongs to a fiber $E_x$, and a feature at $y$ belongs to $E_y$. There is no canonical way to compare them, we need a rule for moving vectors between fibers.
 
