@@ -60,15 +60,27 @@ layout: default
   </header>
 
   <article class="post-content">
-    {% if page.toc and page.toc.beginning %}
-      <div id="table-of-contents">
-        {% toc %}
+    {% if page.toc %}
+    <div class="row">
+      <div class="col-lg-9">
+        <div id="markdown-content">
+          {{ content }}
+        </div>
       </div>
-      <hr>
-    {% endif %}
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="post-toc-sidebar">
+          <nav id="toc-sidebar" class="toc-sidebar">
+            <h6>Contents</h6>
+            {% toc %}
+          </nav>
+        </div>
+      </div>
+    </div>
+    {% else %}
     <div id="markdown-content">
       {{ content }}
     </div>
+    {% endif %}
   </article>
 
   {% if page.citation %}

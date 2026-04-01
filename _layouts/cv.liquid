@@ -71,12 +71,6 @@ layout: default
                   <td class="p-1 pl-2 font-weight-light">{{ cv.name }}</td>
                 </tr>
               {% endif %}
-              {% if cv.label %}
-                <tr>
-                  <td class="p-1 pr-2 font-weight-bold"><b>Professional Title</b></td>
-                  <td class="p-1 pl-2 font-weight-light">{{ cv.label }}</td>
-                </tr>
-              {% endif %}
               {% if cv.email %}
                 <tr>
                   <td class="p-1 pr-2 font-weight-bold"><b>Email</b></td>
@@ -209,12 +203,6 @@ layout: default
                 <tr>
                   <td class="p-1 pr-2 font-weight-bold"><b>Name</b></td>
                   <td class="p-1 pl-2 font-weight-light">{{ basics.name }}</td>
-                </tr>
-              {% endif %}
-              {% if basics.label %}
-                <tr>
-                  <td class="p-1 pr-2 font-weight-bold"><b>Professional Title</b></td>
-                  <td class="p-1 pl-2 font-weight-light">{{ basics.label }}</td>
                 </tr>
               {% endif %}
               {% if basics.email %}

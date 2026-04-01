@@ -8,7 +8,7 @@ pagination:
   enabled: true
   collection: posts
   permalink: /page/:num/
-  per_page: 5
+  per_page: 20
   sort_field: date
   sort_reverse: true
   trail:
@@ -18,16 +18,37 @@ pagination:
 
 <div class="post">
 
+<div class="row">
+<div class="col-lg-3 d-none d-lg-block">
+  <div class="blog-sidebar">
+    <nav class="blog-sidebar-nav">
+      {% assign all_posts = site.posts | sort: "date" | reverse %}
+      {% assign thesis_posts = all_posts | where_exp: "post", "post.tags contains 'thesis'" %}
+
+      {% if thesis_posts.size > 0 %}
+      <h6 class="sidebar-group-title"><i class="fa-solid fa-book-open fa-xs"></i> Thesis</h6>
+      <ul class="sidebar-group">
+        {% for post in thesis_posts %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <h6>All Articles</h6>
+      <ul>
+        {% for post in all_posts %}
+        {% unless post.tags contains 'thesis' %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+        {% endunless %}
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</div>
+<div class="col-lg-9">
+
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}
-
-{% if blog_name_size > 0 or blog_description_size > 0 %}
-
-  <div class="header-bar" style="text-align: left;">
-    <h3 style="margin-bottom: 0;">{{ site.blog_name }}</h3>
-    <p style="opacity: 0.7;">{{ site.blog_description }}</p>
-  </div>
-  {% endif %}
 
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
 
@@ -73,7 +94,7 @@ pagination:
 <div class="float-right">
 <i class="fa-solid fa-thumbtack fa-xs"></i>
 </div>
-<h3 class="card-title text-lowercase">{{ post.title }}</h3>
+<h5 class="card-title text-lowercase">{{ post.title }}</h5>
 <p class="card-text">{{ post.description }}</p>
 
                     {% if post.external_source == blank %}
@@ -127,7 +148,7 @@ pagination:
 <div class="row">
           <div class="col-sm-9">
 {% endif %}
-        <h3>
+        <h5>
         {% if post.redirect == blank %}
           <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
         {% elsif post.redirect contains '://' %}
@@ -138,7 +159,7 @@ pagination:
         {% else %}
           <a class="post-title" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
         {% endif %}
-      </h3>
+      </h5>
       <p>{{ post.description }}</p>
       <p class="post-meta">
         {{ read_time }} min read &nbsp; &middot; &nbsp;
@@ -193,4 +214,6 @@ pagination:
 {% include pagination.liquid %}
 {% endif %}
 
-</div>
+</div><!-- col-lg-9 -->
+</div><!-- row -->
+</div><!-- post -->
