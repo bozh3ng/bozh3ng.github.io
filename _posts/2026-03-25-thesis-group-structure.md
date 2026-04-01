@@ -10,7 +10,7 @@ edited_at: 2026-03-31
 
 # The group structure: a type of formalized prior knowledge
 
-*Part 2 of 5, following [Part 1: Prior Knowledge]({% post_url _posts/2026-03-25-thesis-prior-knowledge %})*
+*Part 2 of 5, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %})*
 
 
 Code can be found in https://github.com/bozh3ng/ThesisExp part2_group_structure.

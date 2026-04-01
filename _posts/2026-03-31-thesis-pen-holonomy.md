@@ -9,7 +9,7 @@ edited_at: 2026-03-31
 ---
 
 
-*Part 5 of 5, following [Part 1: Prior Knowledge]({% post_url _posts/2026-03-25-thesis-prior-knowledge %}), [Part 2 - The Group Structure of Neural Networks]({% post_url _posts/_posts/2026-03-25-thesis-group-structure %}), [Part 3 - Path Equivariance: From Groups to Geometry]({% post_url _posts/_posts/_posts/2026-03-25-thesis-path-equivariance %}), [Part 4 - A Category Theory Perspective on Neural Networks]({% post_url _posts/_posts/_posts/_posts/2026-03-25-thesis-category-theory %})*
+*Part 5 of 5, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %}), [Part 2 - The Group Structure of Neural Networks]({% post_url 2026-03-25-thesis-group-structure %}), [Part 3 - Path Equivariance: From Groups to Geometry]({% post_url 2026-03-25-thesis-path-equivariance %}), [Part 4 - A Category Theory Perspective on Neural Networks]({% post_url 2026-03-25-thesis-category-theory %})*
 
 
 # Classical Equivariant Neural Networks
