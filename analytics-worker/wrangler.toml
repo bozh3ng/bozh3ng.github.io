@@ -1,0 +1,11 @@
+name = "blog-analytics"
+main = "src/worker.js"
+compatibility_date = "2024-12-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://bozh3ng.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-analytics"
+database_id = "058b4fb6-5a0e-469d-bb1f-8be04e77ee83"
