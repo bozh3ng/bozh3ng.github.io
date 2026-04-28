@@ -415,6 +415,7 @@ enable_navbar_social: false # enables displaying social links in the navbar on t
 enable_project_categories: false # disabled - keep it simple
 enable_medium_zoom: false # disabled - no image zoom animation
 enable_progressbar: false # disabled - no scroll progress bar
+enable_private_analytics: true # private visitor tracking via Cloudflare Worker
 enable_video_embedding: false # enables video embedding for bibtex entries. If false, the button opens the video link in a new window.
 
 # -----------------------------------------------------------------------------
