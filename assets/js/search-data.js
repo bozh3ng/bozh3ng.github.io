@@ -30,7 +30,40 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-part-5-pen-holonomy-and-the-single-tangent-space-fallacy",
+        },{id: "post-part-2-5-a-sharp-generalization-bound",
+        
+          title: "Part 2.5 - A Sharp Generalization Bound",
+        
+        description: "Orbit directions are trivially flat, inflating sharpness estimates. Quotient-space sharpness factors out reparametrization symmetry for tighter generalization bounds.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/thesis-sharp-generalization-bound/";
+          
+        },
+      },{id: "post-part-3-5-path-equivariance-recovery-proof",
+        
+          title: "Part 3.5 - Path Equivariance Recovery Proof",
+        
+        description: "A complete proof that classical group equivariance is recovered from path equivariance under the endpoint condition, establishing classical equivariant networks as a special case of the PEN framework.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/thesis-pe-recovery-proof/";
+          
+        },
+      },{id: "post-pml-1-map-mle-latent-variables-and-two-kinds-of-kl",
+        
+          title: "PML-1: MAP, MLE, Latent Variables, and Two Kinds of KL",
+        
+        description: "MAP vs MLE as point estimates, global parameters vs per-example latent variables, the ELBO, and why the two directions of KL divergence give fundamentally different approximations.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/pml-1/";
+          
+        },
+      },{id: "post-part-5-pen-holonomy-and-the-single-tangent-space-fallacy",
         
           title: "Part 5 - PEN, Holonomy, and the Single Tangent Space Fallacy",
         
