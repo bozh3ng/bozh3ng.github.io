@@ -44,11 +44,16 @@
   font-size: 0.85rem;
   color: var(--global-text-color-light);
   text-decoration: none;
-  margin-bottom: 0.5rem;
-  margin-left: -0.25rem;
+  margin-bottom: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 4px;
+  transition: all 0.2s ease;
 
   &:hover {
     color: var(--global-theme-color);
+    border-color: var(--global-theme-color);
+    text-decoration: none;
   }
 
   i {
