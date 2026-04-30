@@ -21,6 +21,7 @@ With $x$, an **event** is a measurable set, denoted
 
 $$
 {X=x}:={\omega \in \Omega: X(\omega)=x}
+
 $$
 
 which is the pre-image $X^{-1}({x})$
@@ -30,6 +31,7 @@ A **distribution** of $X$, denoted as $P_X$, is a pushforward measure induced by
 
 $$
 P_X(A):=P\left(X^{-1}(A)\right)=P({\omega \in \Omega: X(\omega) \in A})
+
 $$
 
 for measurable sets $A \subseteq \mathbb{R}^d$.
@@ -40,6 +42,7 @@ For example, in continuous $X$:
 
 $$
 P(X=x)=P({\omega \in \Omega: X(\omega)=x})=0
+
 $$
 
 So we can't assign positive probability to individual points.
@@ -48,6 +51,7 @@ The **PDF** $p_X(x)$ is a function such that:
 
 $$
 P(X \in A)=\int_A p_X(x) d x
+
 $$
 
 for any measurable set $A$.
@@ -61,7 +65,7 @@ $$p_X(x)=\lim_{\epsilon \rightarrow 0} \frac{P(x \leq X \leq x+\epsilon)}{\epsil
 
 Their relation:
 
-$$P(Y=y)=P_Y({y})=\int_{\lbracey\rbrace} p_Y(y) d y=0$$
+$$P(Y=y)=P_Y({y})=\int_{\lbrace y\rbrace} p_Y(y) d y=0$$
 
 In this essay, we denote a latent variable as $X$, observation data as $Y$.
 
@@ -105,7 +109,7 @@ Here is the abstract part of probability theory: we don't care (and usually don'
 
 >What's our observation (What do we know)?
 
-We observe dataset $Y=\lbracey_1, y_2, \ldots, y_n\rbrace$
+We observe dataset $Y=\lbrace y_1, y_2, \ldots, y_n\rbrace$
 
 >What's our assumption?
 
@@ -149,23 +153,26 @@ Let's write $p(y)$ using $X$. In a more concrete (or abstract?) saying: let's de
 
 $$
 p(X)=\mathcal{N}(0, I)
+
 $$
 
 **Likelihood** (form assumed, parameters learned):
 
 $$
 p(Y \mid X=x)=\mathcal{N}\left(f_\theta(x), \sigma^2 I\right)
+
 $$
 
 where $f_\theta$ is a neural network with weights $\theta$
 **Observe**:
 
-$$Y = \lbracey_1, y_2, \ldots, y_n\rbrace$$
+$$Y = \lbrace y_1, y_2, \ldots, y_n\rbrace$$
 
 **Unknown** (to be learned):
 
 $$
-\theta=\lbraceW_1, b_1, W_2, b_2, \ldots\rbrace
+\theta=\lbrace W_1, b_1, W_2, b_2, \ldots\rbrace
+
 $$
 
 ---
@@ -177,6 +184,7 @@ By Bayes' theorem, the joint distribution:
 
 $$
 p_\theta(x, y)=p_\theta(y \mid x) \cdot p(x)
+
 $$
 
 where:
@@ -198,6 +206,7 @@ Define the Likelihood Function:
 
 $$
 \mathcal{L}(\theta ; y):=p_\theta(y)
+
 $$
 
 A bit confusing: $\mathcal{L}(\theta ; y)=p_\theta(y)$ has different interpretations:
@@ -223,6 +232,7 @@ MLE (Maximum Likelihood Estimation) - Frequentists' perspective
 
 $$
 \hat{\theta}_{M L E}=\arg \max _\theta p(y \mid \theta)
+
 $$
 
 Philosophy:
@@ -236,6 +246,7 @@ MAP (Maximum A Posteriori) - Bayesians' perspective
 
 $$
 \hat{\theta}_{M A P}=\arg \max _\theta p(\theta \mid y)
+
 $$
 
 Philosophy:
@@ -261,6 +272,7 @@ $p(y \mid \theta)$ : Bayesian view:
 
 $$
 p(\theta \mid y)=\frac{p(y \mid \theta) p(\theta)}{p(y)}
+
 $$
 
 Modern machine learning commonly use hybrid approach, which is also called Type II Maximum Likelihood: Maximize $p_\theta(y)=\int p_\theta(y \mid x) p(x) d x$ over $\theta$
@@ -271,6 +283,7 @@ Bayes' Equation: Inferring Latents Given Data
 
 $$
 p_\theta(x \mid y)=\frac{p_\theta(y \mid x) \cdot p(x)}{p_\theta(y)}
+
 $$
 
 where
@@ -295,12 +308,14 @@ Collect all the observations $y_i$, our objective is:
 
 $$
 \max _\theta \prod_{i=1}^n p_\theta\left(y_i\right)=\max _\theta \prod_{i=1}^n \int p_\theta\left(y_i \mid x\right) p(x) d x
+
 $$
 
 Or in log form:
 
 $$
 \max _\theta \sum_{i=1}^n \log p_\theta\left(y_i\right)=\max _\theta \sum_{i=1}^n \log \int p_\theta\left(y_i \mid x\right) p(x) d x
+
 $$
 
 But in general, this integral is intractable.
@@ -312,6 +327,7 @@ Also, we can't use the sampling method (Monte Carlo), if we want to sample from 
 
 $$
 \log \int p_\theta(y \mid x) p(x) d x \approx \log \frac{1}{L} \sum_{l=1}^L p_\theta\left(y \mid x^{(l)}\right)
+
 $$
 
 where $x^{(l)} \sim p(x)=\mathcal{N}(0, I)$.
@@ -338,6 +354,7 @@ $$
 &=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]+\mathbb{E}_{q_\phi(x \mid y)}\left[\log p(x)-\log q_\phi(x \mid y)\right]\\
 &=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)
 \end{aligned}
+
 $$
 
 where $\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)$ is called **ELBO**.
@@ -361,6 +378,7 @@ Most time we can interchangeably use probability and density. But in some cases,
 
 $$
 p_Y(y)=p_X\left(h^{-1}(y)\right) \cdot\lvert\frac{d h^{-1}}{d y}\rvert
+
 $$
 
 Densities are not invariant under reparameterization.
@@ -381,12 +399,14 @@ Since $\log p_\theta(y)$ doesn't depend on $x$, it's constant with respect to th
 
 $$
 \mathrm{ELBO}=\log p_\theta(y)+\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(x \mid y)-\log q_\phi(x \mid y)\right]
+
 $$
 
 This gives us the key equation:
 
 $$
 \log p_\theta(y)=\operatorname{ELBO}(\theta, \phi ; y)+D_{K L}\left(q_\phi(x \mid y) \| p_\theta(x\mid y)\right)
+
 $$
 
 where ELBO is a scalar-valued function of parameters $\theta$ and $\phi$.
@@ -398,12 +418,14 @@ We observe an interesting phenomena in this equation. Since the left side is fix
 
 $$
 \frac{\partial}{\partial \phi} \log p_\theta(y)=0
+
 $$
 
 Therefore:
 
 $$
 \frac{\partial}{\partial \phi} \operatorname{ELBO}(\theta, \phi ; y)=-\frac{\partial}{\partial \phi} D_{K L}\left(q_\phi(x \mid y) \| p_\theta(x \mid y)\right)
+
 $$
 
 When we increase ELBO by changing $\phi$ , we decreases KL divergence simultaneously!
@@ -414,6 +436,7 @@ Now, our **objective** becomes
 
 $$
 \max _{\theta, \phi} \operatorname{ELBO}(\theta, \phi ; y)
+
 $$
 
 ## Methodology
@@ -422,6 +445,7 @@ Recall the ELBO formula:
 
 $$
 \operatorname{ELBO}(\theta, \phi ; y)=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)
+
 $$
 
 >This looks more complex, we need to optimize with respect to both $\theta$ and $\phi$. Is it tractable?
@@ -436,6 +460,7 @@ The KL divergence (for diagonal covariance Gaussian vs standard normal) is:
 
 $$
 D_{K L}=\frac{1}{2} \sum_{j=1}^d\left(\mu_j^2+\sigma_j^2-\log \sigma_j^2-1\right)
+
 $$
 
 where $\mu=\mu_\phi(y)$ and $\sigma^2=\sigma_\phi^2(y)$. Note: this closed form assumes $q_\phi$ has diagonal covariance; the general case with a full covariance matrix is more complex.
@@ -462,6 +487,7 @@ We can think of it as a function:
 
 $$
 q_\phi(x \mid y): \mathbb{R}^{d_{\text {latent }}} \rightarrow[0, \infty)
+
 $$
 
 Given fixed $\phi$ (parameters) and fixed $y$ (observation), this is a function of $x$ :
@@ -476,6 +502,7 @@ Similarly we can think it as a Function:
 
 $$
 p_\theta(y \mid x): \mathbb{R}^{d_{\text {obs }}} \rightarrow[0, \infty)
+
 $$
 
 Given fixed $\theta$ and fixed $x$, this is a function of $y$ :
@@ -500,12 +527,14 @@ $$\begin{gathered}
 \nabla_\phi\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]\\
 =\nabla_\phi \int q_\phi(x \mid y) \log p_\theta(y \mid x) d x
 \end{gathered}
+
 $$
 
 Recall $p_\theta(y \mid x)=\mathcal{N}\left(f_\theta(x), \sigma^2 I\right)$ , since $f_\theta(x)$ doesn't depend on $\phi$,
 
 $$
 =\int \nabla_\phi q_\phi(x \mid y) \cdot \log p_\theta(y \mid x) d x
+
 $$
 
 A common choice  $q_\phi(x \mid y)=\mathcal{N}\left(\mu_\phi(y), \sigma_\phi^2(y)\right)$,  but this is still hard because $\mu$ and $\sigma$ are neural networks (encoder).
@@ -531,12 +560,14 @@ Based on this idea, instead of sampling:
 
 $$
 x \sim q_\phi(x \mid y)=\mathcal{N}\left(\mu_\phi(y), \sigma_\phi^2(y)\right)
+
 $$
 
 We use a deterministic function:
 
 $$
 x=g(\phi, \epsilon, y)=\mu_\phi(y)+\sigma_\phi(y) \cdot \epsilon
+
 $$
 
 where $\epsilon \sim p(\epsilon)=\mathcal{N}(0, I)$ is a fixed noise variable that doesn't depend on $\phi$.
@@ -546,12 +577,14 @@ The original expectation:
 
 $$
 \mathbb{E}_{x \sim q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]=\int q_\phi(x \mid y) \log p_\theta(y \mid x) d x
+
 $$
 
 Can be rewritten as:
 
 $$
 \mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\log p_\theta(y \mid g(\phi, \epsilon, y))\right]=\int p(\epsilon) \log p_\theta(y \mid g(\phi, \epsilon, y)) d \epsilon
+
 $$
 
 We changed variables in the integral!
@@ -562,6 +595,7 @@ $$\begin{gathered}
 \nabla_\phi\mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\log p_\theta(y \mid g(\phi, \epsilon, y))\right] \\
 =\mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\nabla_\phi \log p_\theta(y \mid g(\phi, \epsilon, y))\right]
 \end{gathered}
+
 $$
 
 Now we can use Monte Carlo Estimation. By sampling $\epsilon$ from $p(\epsilon)$, which is $\mathcal{N}(0,I)$:
@@ -571,6 +605,7 @@ $$
 \mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}\left[\nabla_\phi \log p_\theta(y \mid g(\phi, \epsilon, y))\right] \\
 \approx \frac{1}{L} \sum_{l=1}^L \nabla_\phi \log p_\theta\left(y \mid g\left(\phi, \epsilon^{(l)}, y\right)\right)
 \end{gathered}
+
 $$
 
 where $\epsilon^{(1)}, \ldots, \epsilon^{(L)} \sim \mathcal{N}(0, I)$
@@ -590,6 +625,7 @@ $$
 \nabla_\phi \log p_\theta(y \mid g(\phi, \epsilon, y))\\
 =\nabla_\phi \log p_\theta(y \mid \mu_\phi(y)+\sigma_\phi(y) \cdot \epsilon)
 \end{gathered}
+
 $$
 
 where $\epsilon \sim \mathcal{N}(0, I)$ is sampled once per gradient computation.
@@ -606,6 +642,7 @@ True, we need to optimize both $\theta$ and $\phi$ simultaneously, recall our ob
 
 $$
 \max _{\theta, \phi} \operatorname{ELBO}(\theta, \phi ; y)
+
 $$
 
 We can make joint gradient descent . In each gradient step:

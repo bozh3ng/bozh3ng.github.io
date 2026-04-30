@@ -24,12 +24,14 @@ Compared with full-space sharpness:
 
 $$
 S_{\text {full }}^\epsilon(\theta)=\max _{\delta \in \mathbb{R}^d,\|\delta\| \leq \epsilon}[L(\theta+\delta)-L(\theta)]
+
 $$
 
 we define quotient sharpness:
 
 $$
 S_{\text {quot }}^\epsilon(\theta)=\max _{\delta \in \mathcal{H}_\theta,\|\delta\| \leq \epsilon}[L(\theta+\delta)-L(\theta)]
+
 $$
 
 Here $\mathcal{H}_\theta$ is the orthogonal complement of the orbit tangent space at $\theta$. By confining the perturbation ball to functionally distinct directions, the resulting sharpness measure captures genuine sensitivity of the network function to parameter changes, without the confound of reparametrization symmetry.

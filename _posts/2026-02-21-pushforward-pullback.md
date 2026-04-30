@@ -23,6 +23,7 @@ Technically speaking, a tangent vector at $p$ is an equivalence class of curves 
 
 $$
 \left.\frac{d}{d t}\left(\phi \circ \gamma_1\right)\rvert_{t=0}=\left.\frac{d}{d t}\left(\phi \circ \gamma_2\right)\rvert_{t=0}
+
 $$
 
 The intuition: a direction at $p$ is determined by all the curves that "leave $p$ the same way." No single curve is the vector - the whole equivalence class is.
@@ -43,6 +44,7 @@ We use the derivation picture to define tangent vectors.
 
 $$
 v(g h)=v(g) \cdot h(p)+g(p) \cdot v(h) .
+
 $$
 
 (**Remark**: The Leibniz rule forces vector be the first derivative.)
@@ -96,12 +98,14 @@ $$
 d f_p: \mathbb{R} \rightarrow \mathbb{R} \
 h \mapsto f^{\prime}(p) \cdot h
 \end{aligned}
+
 $$
 
 Its input $h$ is a perturbation from $p$, its output $f^{\prime}(p) \cdot h$ is a perturbation from $f(p)$. The number $f^{\prime}(p)$ (called the derivative) defines the best linear approximation:
 
 $$
 f(p+h) \approx f(p)+f^{\prime}(p) \cdot h
+
 $$
 
 So the derivative $f^{\prime}(p)$ is a number, and the differential $d f_p$ is the linear map "multiply by that number." In single-variable calculus, they are the same thing.
@@ -114,12 +118,14 @@ $$
 d f_p: & \mathbb{R}^m \rightarrow \mathbb{R}^n \\
 h & \mapsto J_p \cdot h
 \end{aligned}
+
 $$
 
 A small perturbation $h$ near $p$ gets mapped to a small perturbation $J_p h$ near $f(p)$. Again, $J_p$ defines the best linear approximation:
 
 $$
 f(p+h) \approx f(p)+J_p \cdot h
+
 $$
 
 ## Manifolds
@@ -131,6 +137,7 @@ The tangent space $T_p M$ is exactly the space of infinitesimal displacements at
 
 $$
 d f_p: T_p M \rightarrow T_{f(p)} N
+
 $$
 
 But not just any linear map, the differential is the unique linear map satisfying the condition $\left(d f_p(v)\right)(g)=v(g \circ f)$, which is the intrinsic reformulation of "best linear approximation".
@@ -141,12 +148,14 @@ But not just any linear map, the differential is the unique linear map satisfyin
 
 $$
 f_*: T_p M \rightarrow T_{f(p)} N
+
 $$
 
 Not just any linear map, it is the unique linear map satisfying:
 
 $$
 \left(f_* v\right)(g)=v(g \circ f)
+
 $$
 
 for all $v \in T_p M$ and all smooth $g: N \rightarrow \mathbb{R}$.
@@ -166,6 +175,7 @@ Consequence: The pushforward is exactly the differential at $p$ :
 
 $$
 f_*=d f_p: T_p M \rightarrow T_{f(p)} N
+
 $$
 
 > Why are they the same?
@@ -185,6 +195,7 @@ The "best linear approximation" has the same format as "pushforward": $\left(d f
 
 $$
 f_*\left(\frac{d}{d t}\right)=-\sin t_0 \frac{\partial}{\partial x}+\cos t_0 \frac{\partial}{\partial y}
+
 $$
 
 This is the velocity vector of the circle: the tangent vector gets pushed from $\mathbb{R}$ into $\mathbb{R}^2$.
@@ -195,6 +206,7 @@ If $g: M \rightarrow \mathbb{R}$ is the temperature function, then:
 
 $$
 f_*\left(\frac{d}{d t}\right)(g)=\frac{d}{d t}(g \circ f)
+
 $$
 
 The left side says: push our velocity to the Earth, then measure the rate of temperature change in that direction. The right side says: just differentiate temperature-along-the-trail with respect to time.
@@ -212,12 +224,14 @@ Suppose we have coordinates $\left(u^1, \ldots, u^m\right)$ on $M$. These coordi
 
 $$
 \lbrace\left.\frac{\partial}{\partial u^1}\rvert_p, \ldots,\left.\frac{\partial}{\partial u^m}\rvert_p\rbrace
+
 $$
 
 Each $\left.\frac{\partial}{\partial u^i}\rvert_p$ is itself a tangent vector, the one corresponding to "move in the $u^i$-direction only." Together they form a basis for $T_p M$. Any tangent vector $v \in T_p M$ can be written as:
 
 $$
 v=a^1 \frac{\partial}{\partial u^1}+\cdots+a^m \frac{\partial}{\partial u^m}
+
 $$
 
 The numbers $\left(a^1, \ldots, a^m\right)$ are the components of $v$ in these coordinates. Now $v$ looks like a familiar column vector. The components depend on the choice of coordinates: change coordinates and the components change, but $v$ itself stays the same.
@@ -225,12 +239,14 @@ Now suppose we also have coordinates $\left(y^1, \ldots, y^n\right)$ on $N$. The
 
 $$
 f\left(u^1, \ldots, u^m\right)=\left(f^1(u), \ldots, f^n(u)\right)
+
 $$
 
 Both $T_p M$ and $T_{f(p)} N$ now have bases. A linear map is completely determined by what it does to basis vectors, so it suffices to compute $f_*\left(\frac{\partial}{\partial u^i}\right)$ for each $i$. By the chain rule (we omit the process):
 
 $$
 f_*\left(\frac{\partial}{\partial u^i}\right)=\sum_j \frac{\partial f^j}{\partial u^i} \frac{\partial}{\partial y^j}
+
 $$
 
 The coefficient of $\frac{\partial}{\partial y^j}$ is $\frac{\partial f^j}{\partial u^i}$. Collecting all these coefficients gives the Jacobian matrix:
@@ -241,6 +257,7 @@ J=\begin{pmatrix}
 \vdots & \ddots & \vdots \\
 \frac{\partial f^n}{\partial u^1} & \cdots & \frac{\partial f^n}{\partial u^m}
 \end{pmatrix}
+
 $$
 
 For a tangent vector $v=a^i \frac{\partial}{\partial u^i}$, the pushforward in components is:
@@ -251,6 +268,7 @@ a^1 \\
 \vdots \\
 a^m
 \end{pmatrix}
+
 $$
 
 Analogize in linear algebra: a linear map $A: V \rightarrow W$ is abstract, but once we choose bases for $V$ and $W$ and express vectors as columns of components, $A$ is represented as a matrix.
@@ -264,6 +282,7 @@ J=\begin{pmatrix}
 t & s \\
 0 & 3 t^2
 \end{pmatrix}
+
 $$
 
 At $p=(1,1)$, for the tangent vector $w=2 \frac{\partial}{\partial s}+3 \frac{\partial}{\partial t}$ :
@@ -278,6 +297,7 @@ f_* w \longleftrightarrow\begin{pmatrix}
 5 \\
 9
 \end{pmatrix}
+
 $$
 
 So $f_* w=4 \frac{\partial}{\partial x}+5 \frac{\partial}{\partial y}+9 \frac{\partial}{\partial z}$, a tangent vector at $f(1,1)=(1,1,1)$ in $\mathbb{R}^3$.
@@ -290,6 +310,7 @@ A 0-form eats zero tangent vectors; it just returns a number at each point. This
 
 $$
 g: M \rightarrow \mathbb{R}
+
 $$
 
 ## 1-form
@@ -297,14 +318,16 @@ A 1-form eats one tangent vector and returns a number:
 
 $$
 \omega_p: T_p M \rightarrow \mathbb{R}
+
 $$
 
 It is a linear map from the tangent space to $\mathbb{R}$. Given a direction, it returns a measurement of that direction.
 
-On $\mathbb{R}^n$ with coordinates $\left(x^1, \ldots, x^n\right)$, the basis 1-forms are $\lbraced x^1, \ldots, d x^n\rbrace$ .They are defined by basis tangent vectors:
+On $\mathbb{R}^n$ with coordinates $\left(x^1, \ldots, x^n\right)$, the basis 1-forms are $\lbrace d x^1, \ldots, d x^n\rbrace$ .They are defined by basis tangent vectors:
 
 $$
 d x^i\left(\frac{\partial}{\partial x^j}\right)=\delta_j^i= \begin{cases}1 & \text { if } i=j \\ 0 & \text { if } i \neq j\end{cases}
+
 $$
 
 The 1-form $d x^i$ asks: "what is the $x^i$-component of the vector?"
@@ -313,12 +336,14 @@ A general 1-form is a linear combination:
 
 $$
 \omega=b_1 d x^1+\cdots+b_n d x^n
+
 $$
 
 And it acts on a tangent vector $v=a^1 \frac{\partial}{\partial x^1}+\cdots+a^n \frac{\partial}{\partial x^n}$ by:
 
 $$
 \omega(v)=\sum_i b_i a^i
+
 $$
 
 This is just a dot product between $\left(b_1, \ldots, b_n\right)$ and $\left(a^1, \ldots, a^n\right)^T$.
@@ -327,12 +352,14 @@ The simplest 1-form is differential. Given a function $g: M \rightarrow \mathbb{
 
 $$
 d g(v)=v(g)
+
 $$
 
 In coordinates:
 
 $$
 d g=\sum_i \frac{\partial g}{\partial x^i} d x^i
+
 $$
 
 For example, if $g(x, y)=x^2+y$, then $d g=2 x d x+d y$.
@@ -342,6 +369,7 @@ A 2-form eats two tangent vectors and returns a number:
 
 $$
 \omega_p: T_p M \times T_p M \rightarrow \mathbb{R}
+
 $$
 
 with two key properties:
@@ -362,6 +390,7 @@ The simplest case. A 0-form on $N$ is just a function $g: N \rightarrow \mathbb{
 
 $$
 f^* g=g \circ f: M \rightarrow \mathbb{R}
+
 $$
 
 If $g$ measures temperature on $N$, then $f^* g$ measures "the temperature at wherever $f$ sends you" on $M$.
@@ -370,6 +399,7 @@ If $g$ measures temperature on $N$, then $f^* g$ measures "the temperature at wh
 
 $$
 f^* g=g \circ f(s, t)=s^2+2 s t+t^3
+
 $$
 
 ## Pullback on 1-forms
@@ -380,12 +410,14 @@ $$
 f^*: \Omega^1(N) \rightarrow \Omega^1(M) \\
 \omega \mapsto f^* \omega
 \end{gathered}
+
 $$
 
 The 1-form $f^* \omega$ is defined by:
 
 $$
 \left(f^* \omega\right)_p(v)=\omega_{f(p)}\left(f_* v\right)
+
 $$
 
 Let's unpack this equation:
@@ -413,6 +445,7 @@ $$
 f^* \omega & =s^2(t d s+s d t)+t^3(2 s d s) \\
 & =\left(s^2 t+2 s t^3\right) d s+s^3 d t
 \end{aligned}
+
 $$
 
 The result is a 1-form on $\mathbb{R}^2$, expressed in the coordinates $(s, t)$. The form $\omega$ lived on $\mathbb{R}^3$; the pullback $f^* \omega$ lives on $\mathbb{R}^2$.
@@ -476,6 +509,7 @@ Let's review some probability concepts before defining pushforward in this conte
 
 $$
 p: \text { subsets of } X \rightarrow[0,1]
+
 $$
 
 with $p(X)=1$ (total probability is 1 ).
@@ -484,6 +518,7 @@ with $p(X)=1$ (total probability is 1 ).
 
 $$
 p([a, b])=\int_a^b \frac{1}{\sqrt{2 \pi}} e^{-x^2 / 2} d x
+
 $$
 
 **Remark**: In the discrete case, we can also write $p(x)$ for individual points, and these are actual probabilities: $p(x) \in[0,1]$. In the continuous case, $p(x)$ is the density which can be greater than 1. But always $\int p(x) d x=1$.
@@ -532,6 +567,7 @@ In probability, the pullback is the same idea as the 0-form pullback. Given $f: 
 
 $$
 f^* g=g \circ f: X \rightarrow \mathbb{R}
+
 $$
 
 If $g$ is an observable on $Y$, then $f^* g$ is the corresponding observable on $X$.
@@ -540,6 +576,7 @@ In probability, we can connect pushforward and pullback through expectation:
 
 $$
 \mathbb{E}_{f_{\sharp} p}[g]=\mathbb{E}_p[g \circ f]=\mathbb{E}_p\left[f^* g\right]
+
 $$
 
 The left side says: push the distribution to $Y$, then average $g$ there. The right side says: pull the function back to $X$, then average it under the original distribution.
@@ -553,6 +590,7 @@ $$
 & p: C(X) \rightarrow \mathbb{R} \\
 & p(g)=\mathbb{E}_p[g]=\int g d p
 \end{aligned}
+
 $$
 
 then $p$ is a measurement device for functions, just as a 1-form $\omega$ is a measurement device for vectors. The expectation equation

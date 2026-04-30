@@ -49,7 +49,7 @@ Crucially, the axioms say nothing about what $P$ *means*. They are syntax. They 
 
 To use probability for anything, you have to specify a probability space. What is $\Omega$? What is $\mathcal{F}$? What is $P$?
 
-For a die, $\Omega = \lbrace1,2,3,4,5,6\rbrace$, $\mathcal{F} = 2^\Omega$, and $P(\lbracei\rbrace) = 1/6$. For a neural network's predictive distribution, $\Omega$ is the output space, $\mathcal{F}$ is its Borel $\sigma$-algebra, and $P$ is a softmax over logits parametrized by weights. For a Bayesian posterior, $\Omega$ is the parameter space and $P$ is a measure built from prior times likelihood.
+For a die, $\Omega = \lbrace1,2,3,4,5,6\rbrace$, $\mathcal{F} = 2^\Omega$, and $P(\lbrace i\rbrace) = 1/6$. For a neural network's predictive distribution, $\Omega$ is the output space, $\mathcal{F}$ is its Borel $\sigma$-algebra, and $P$ is a softmax over logits parametrized by weights. For a Bayesian posterior, $\Omega$ is the parameter space and $P$ is a measure built from prior times likelihood.
 
 These specifications are not derived from the axioms. They are modeling choices. Each one involves a claim about the world: "this die is symmetric and fairly thrown," "this output distribution captures predictive uncertainty," "this prior captures my beliefs before seeing data." The axioms then constrain what follows from each choice, but the choice itself is justified by physics, symmetry, prior knowledge, or empirical fit, never by mathematics alone.
 
@@ -82,6 +82,7 @@ If a sequence of events $X_1, X_2, \ldots$ is exchangeable, meaning your beliefs
 
 $$
 P(X_1, \ldots, X_n) = \int \prod_{i=1}^n p(X_i \mid \theta) \, \pi(\theta) \, d\theta.
+
 $$
 
 Frequencies emerge from beliefs as soon as you commit to the right symmetry. The frequentist's "true probability" $\theta$ becomes a latent variable; the Bayesian's prior $\pi(\theta)$ describes uncertainty over it. Long-run frequencies and degrees of belief become two ways of looking at the same mathematics.
@@ -92,6 +93,7 @@ This is the deepest reason the formalism is shared across interpretations. Kolmo
 
 $$
 \underbrace{\text{Kolmogorov axioms}}_{\text{syntax}} \;\longrightarrow\; \underbrace{(\Omega, \mathcal{F}, P)}_{\text{model of the world}} \;\longrightarrow\; \underbrace{\text{interpretation}}_{\text{what } P \text{ refers to}}
+
 $$
 
 Each layer has its own discipline. Mathematics polices the first. Empirical adequacy polices the second. Usefulness and philosophical care police the third.

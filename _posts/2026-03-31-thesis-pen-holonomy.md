@@ -77,7 +77,7 @@ $$\tau_\gamma = \tau_{\gamma_2}^{-1} \circ \tau_{\gamma_1}$$
 
 so $\tau_{\gamma_1} = \tau_{\gamma_2}$ if and only if $\tau_\gamma = \mathrm{id}$. Path-dependence between two points is detected by holonomy at one point.
 
-Back to our question: is transport path-dependent? If every loop at $x$ gives trivial transport, then $\mathrm{Hol}_x(\nabla) = \lbracee\rbrace$, transport is path-independent everywhere, and global equivariance suffices (PEN reduces to global equivariance). If some loop rotates a vector, different paths give different transports, and PEN is genuinely necessary.
+Back to our question: is transport path-dependent? If every loop at $x$ gives trivial transport, then $\mathrm{Hol}_x(\nabla) = \lbrace e\rbrace$, transport is path-independent everywhere, and global equivariance suffices (PEN reduces to global equivariance). If some loop rotates a vector, different paths give different transports, and PEN is genuinely necessary.
 
 ![file-20260330184511614.png](/assets/img/blog/thesis-pen-holonomy/file-20260330184511614.png)
 
@@ -94,7 +94,7 @@ The destination vector depends only on where we start and where we end, not on h
 
 On simply connected $M$, path-independence is equivalent to three other conditions, all describing the same phenomenon from different angles:
 
-1. $\mathrm{Hol}(\nabla) = \lbracee\rbrace$. Every closed loop transports vectors back to themselves. (trivial holonomy)
+1. $\mathrm{Hol}(\nabla) = \lbrace e\rbrace$. Every closed loop transports vectors back to themselves. (trivial holonomy)
 2. The connection is flat (zero curvature)
 3. PEN collapses to classical equivariance: paths carry no more information than their endpoints
 
@@ -104,7 +104,7 @@ On simply connected $M$, path-independence is equivalent to three other conditio
 
 This section draws on the paper _Unraveling the Single Tangent Space Fallacy_ [1].
 
-A common workaround for data on curved manifolds: pick a base point $p$, map everything to $T_pM$ via the logarithmic map $\mathrm{Log}_p$, and work in that single flat vector space. Geometrically, this imposes a flat connection on the tangent bundle - transport from any point to $p$ is the $\mathrm{Log}$ map, independent of path. The holonomy group is trivial: $\mathrm{Hol} = \lbracee\rbrace$, the path-independent condition holds trivially, and PEN reduces to global equivariance. The cost is distortion. Points far from $p$ are mapped with increasing error, and the curvature information, which encodes genuine structure in the data, is discarded.
+A common workaround for data on curved manifolds: pick a base point $p$, map everything to $T_pM$ via the logarithmic map $\mathrm{Log}_p$, and work in that single flat vector space. Geometrically, this imposes a flat connection on the tangent bundle - transport from any point to $p$ is the $\mathrm{Log}$ map, independent of path. The holonomy group is trivial: $\mathrm{Hol} = \lbrace e\rbrace$, the path-independent condition holds trivially, and PEN reduces to global equivariance. The cost is distortion. Points far from $p$ are mapped with increasing error, and the curvature information, which encodes genuine structure in the data, is discarded.
 
 The tangent bundle approach keeps each point's tangent space $T_xM$ separate. A vector at $x$ and a vector at $y$ live in different spaces, and comparing them requires parallel transport via the connection along a specific path. On a curved manifold this transport is path-dependent, holonomy is non-trivial, and PEN is the architecturally principled framework for respecting this structure.
 
@@ -135,7 +135,7 @@ On a general curved Riemannian manifold, the transport $T(x, y)$ is not well-def
 On simply connected $M$, the following conditions are equivalent:
 
 1. The connection is flat.
-2. $\mathrm{Hol}(\nabla) = \lbracee\rbrace$. Every closed loop transports vectors back to themselves.
+2. $\mathrm{Hol}(\nabla) = \lbrace e\rbrace$. Every closed loop transports vectors back to themselves.
 3. PEN collapses to classical equivariance: paths carry no more information than their endpoints.
 4. Transport is path-independent: $\tau_{\gamma_1} = \tau_{\gamma_2}$ for all paths sharing the same endpoints.
 5. Transport defines a consistent group action on fibers: $T(x, y) : E_x \to E_y$ depends only on $(x, y)$, and these maps compose as a group.

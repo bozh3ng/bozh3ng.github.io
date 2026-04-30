@@ -13,6 +13,7 @@ Definition: A set $S \subseteq \mathbb{R}^n$ is **convex** if for every pair of 
 
 $$
 x_1, x_2 \in S \quad \Longrightarrow \quad \lambda x_1+(1-\lambda) x_2 \in S \quad \text { for all } \lambda \in[0,1]
+
 $$
 
 The intersection of convex sets is convex.
@@ -21,6 +22,7 @@ Given a convex set $S$, a point $x \in S$ is called an **extreme point** if the 
 
 $$
 x=\lambda x_1+(1-\lambda) x_2 \quad \text { with } x_1, x_2 \in S \text { and } \lambda \in(0,1)
+
 $$
 
 is if $x_1=x_2=x$. In other words, $x$ cannot be represented as a "nontrivial" mixture of two distinct points in $S$.
@@ -29,14 +31,14 @@ Intuition: any point in a convex set can be represented as a point on a line seg
 ## Examples 
 For any non-zero $a \in \mathbb{R}^n$ and $b \in \mathbb{R}$, the set
 
-- $\lbracex \in \mathbb{R}^n: a^T x \leq 0\rbrace$ is a **linear halfspace**
-- $\lbracex \in \mathbb{R}^n: a^T x \leq b\rbrace$ is an **affine halfspace**.
+- $\lbrace x \in \mathbb{R}^n: a^T x \leq 0\rbrace$ is a **linear halfspace**
+- $\lbrace x \in \mathbb{R}^n: a^T x \leq b\rbrace$ is an **affine halfspace**.
 All these sets are convex.
 If $n \geq 2$, then they have no extreme points.
 
-The **nonnegative orthant** $\mathbb{R}_{+}^n:=\lbracex \in \mathbb{R}^n: x_i \geq 0\right.$ for $\left.i=1, \ldots, n\rbrace$ is a convex cone.
+The **nonnegative orthant** $\mathbb{R}_{+}^n:=\lbrace x \in \mathbb{R}^n: x_i \geq 0 \text{ for } i=1, \ldots, n\rbrace$ is a convex cone.
 
-The sublevel set $\lbracex : x^T A x + b^T x + c \leq 0\rbrace$, where $A \succeq 0$, is convex.
+The sublevel set $\lbrace x : x^T A x + b^T x + c \leq 0\rbrace$, where $A \succeq 0$, is convex.
 
 A set $S \subseteq \mathbb{R}^n$ is a **cone** if $\lambda \geq 0, x \in S$ implies $\lambda x \in S$.
 Not all cones are convex sets 
@@ -53,8 +55,9 @@ If the feasible region is non-empty, then the LP is called **feasible**.
 $$
 \begin{array}{ll}
 \text { minimize } & c^T x\quad \text{(objective function)} \\
-\text { subject to } & \lbracex \in \mathbb{R}^n: A x=b, x \geq 0\rbrace \quad \text{(feasible region)}
+\text { subject to } & \lbrace x \in \mathbb{R}^n: A x=b, x \geq 0\rbrace \quad \text{(feasible region)}
 \end{array}
+
 $$
 
 where $c \in \mathbb{R}^n, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ and $x \in \mathbb{R}^n$ is the variable over which the optimization is performed.
@@ -66,6 +69,7 @@ $$
 \text { minimize } & b^T y \\
 \text { subject to } & A^T y \leq c
 \end{array}
+
 $$
 
 where $c \in \mathbb{R}^n, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ and $y \in \mathbb{R}^m$ is the variable over which the optimization is performed.
@@ -82,8 +86,8 @@ Short proof: $b^T y=y^T b=y^T(A x)=\left(A^T y\right)^T x \leq c^T x$
 ## Strong duality
 If both primal and dual problems are **feasible**, means 
 
-- the primal set $\lbracex \mid A x=b, x \geq 0\rbrace$ is non-empty
-- the dual set $\lbracey \mid A^T y \leq c\rbrace$ is non-empty. 
+- the primal set $\lbrace x \mid A x=b, x \geq 0\rbrace$ is non-empty
+- the dual set $\lbrace y \mid A^T y \leq c\rbrace$ is non-empty. 
 Then they achieve exactly the same optimal value.
 REMARK: Every linear program (that is feasible and bounded) is strong duality
 
@@ -105,6 +109,7 @@ $$
 \text { minimize } & \langle C, X\rangle \\
 \text { subject to } & X \in S^n:\left\langle A_i, X\right\rangle=b_i,i=1, \ldots, m, X \succeq 0
 \end{array}
+
 $$
 
 where $C, A_i \in S^n, b_i \in \mathbb{R}$ and $X \in S^n$ is the variable over which the optimization is performed.
@@ -116,6 +121,7 @@ $$
 \text { minimize } & c^T x \\
 \text { subject to } & F(x):=F_0+\sum_{i=1}^m x_i F_i \succeq 0
 \end{array}
+
 $$
 
 where
@@ -133,6 +139,7 @@ $$
 \text { subject to } & x_{11}+x_{22}=1,\\ 
 & \begin{pmatrix}x_{11} & x_{12} \\ x_{12} & x_{22}\end{pmatrix} \succeq 0 
 \end{array}
+
 $$
 
 ## Dual SDP formulation
@@ -142,6 +149,7 @@ $$
 \text { maximize } & b^T y \\
 \text { subject to } & \sum_{i=1}^m A_i y_i \preceq C
 \end{array}
+
 $$
 
 where $C, A_i \in S^n, b_i \in \mathbb{R}$ and $y \in \mathbb{R}^m$ is the variable over which the optimization is performed.
@@ -153,6 +161,7 @@ $$
 \text { maximize } & y \\
 \text { subject to } & \begin{pmatrix}2-y & 1 \\ 1 & -y\end{pmatrix} \succeq 0
 \end{array}
+
 $$
 
 ## Weak duality
@@ -176,6 +185,7 @@ We can write the entries of a squared distance matrix in terms of Gram matrix:
 
 $$
 D_{i j}^{(2)}=G_{i i}+G_{j j}-2 G_{i j}
+
 $$
 
 The existence of a point configuration in dimension $d$ is equivalent that the Gram matrix $G$ is of rank at most $d$.
@@ -189,6 +199,7 @@ $$
 & \sum_{i, j} G_{i j}=0 \\
 & \operatorname{rank}(G)=d
 \end{array}
+
 $$
 
 ### SDP relaxation
@@ -200,6 +211,7 @@ $$
 \text { subject to } & G_{i i}+G_{j j}-2 G_{i j}=D_{i j}^{(2)}\\ 
 & \sum_{i, j} G_{i j}=0 
 \end{array}
+
 $$
 
 This relaxation allows the points to embed in $\mathbb{R}^k$ for some $k > d$.
@@ -210,11 +222,11 @@ One can apply cMDS to the solution obtained by the SDP relaxation to obtain a so
 Flatten the graph associated with a partial Euclidean distance matrix by pulling the vertices of the graph as far from each other as possible.
 Formally, we want to maximize 
 
-$$\sum_{i, j=1}^n\lVertx_i-x_j\rVert$$
+$$\sum_{i, j=1}^n\lVert x_i-x_j\rVert$$
 
 And we can prove that 
 
-$$\sum_{i, j=1}^n\lVertx_i-x_j\rVert=2 n \operatorname{Tr}(G)$$
+$$\sum_{i, j=1}^n\lVert x_i-x_j\rVert=2 n \operatorname{Tr}(G)$$
 
 REMARK: Often minimize rank $(G)$ is replaced by minimize $\operatorname{Tr}(G)$, which is called the **nuclear norm heuristic**.
 Geometric interpretation of minimizing $\operatorname{Tr}(G)$ is bringing vertices as close together as possible. Conversely, maximizing $\operatorname{Tr}(G)$ pushes points apart, favoring higher embedding dimension.
@@ -228,6 +240,7 @@ $$
 & \sum_{i, j} G_{i j}=0 \\
 & G \succeq 0
 \end{array}
+
 $$
 
 ### Nearest Euclidean distance matrix problem(EDM)
@@ -239,6 +252,7 @@ $$
 \text { subject to } & \sum_{i, j} G_{i j}=0 \\
 & G \succeq 0
 \end{array}
+
 $$
 
 ## PCA
@@ -270,6 +284,7 @@ $$
 \text { subject to } & \|x\|_2=1 \\
 & \operatorname{Card}(x) \leq k
 \end{array}
+
 $$
 
 ($\operatorname{Card}(x)$ denotes the number of non-zero entries of $x$)
@@ -293,6 +308,7 @@ $$
 & \operatorname{Rank}(X)=1 \\
 & X \succeq 0
 \end{array}
+
 $$
 
 Now the convex objective $x^T \Sigma x$ becomes linear objective $\operatorname{Tr}(\Sigma X)$
@@ -315,6 +331,7 @@ $$
 & \mathbf{1}^T|X| \mathbf{1} \leq k \\
 & X \succeq 0
 \end{array}
+
 $$
 
 The optimal value to SDP will be an upper bound on the optimal value of the variational problem.

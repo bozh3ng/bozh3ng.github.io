@@ -64,7 +64,7 @@ Now introduce a nonlinear activation $\sigma$ between layers. The reparametrizat
 
 This surviving symmetry is the *centralizer* of the activation:
 
-$$\mathrm{Cent}(\sigma) = \lbraceK \in \mathrm{GL}(n) : \sigma(Kz) = K\sigma(z) \text{ for all } z\rbrace$$
+$$\mathrm{Cent}(\sigma) = \lbrace K \in \mathrm{GL}(n) : \sigma(Kz) = K\sigma(z) \text{ for all } z\rbrace$$
 
 Different activations yield dramatically different centralizers.
 

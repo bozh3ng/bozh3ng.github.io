@@ -16,19 +16,21 @@ A real matrix
 
 $$
 M \in \mathbb{R}^{d \times n}
+
 $$
 
 encodes a linear map
 
 $$
 T_M: \mathbb{R}^n \longrightarrow \mathbb{R}^d, \quad x \mapsto M x .
+
 $$
 
 The map can collapse dimensions.
 The rank $r=\operatorname{rank}(M)$ is the number of linearly independent columns (or rows).
 
-- Column space (image) $\mathcal{C}(M)=\lbraceM x \mid x \in \mathbb{R}^n\rbrace \subseteq \mathbb{R}^d$ is an $r$-dimensional subspace.
-- Null space (kernel) $\mathcal{N}(M)=\lbracex \in \mathbb{R}^n \mid M x=0\rbrace$ has dimension $(n-r)$.
+- Column space (image) $\mathcal{C}(M)=\lbrace M x \mid x \in \mathbb{R}^n\rbrace \subseteq \mathbb{R}^d$ is an $r$-dimensional subspace.
+- Null space (kernel) $\mathcal{N}(M)=\lbrace x \in \mathbb{R}^n \mid M x=0\rbrace$ has dimension $(n-r)$.
 
 So although inputs live in $n$ dimensions, only an $r$-dimensional slice survives after the transformation.
 
@@ -36,6 +38,7 @@ If we perform SVD on $M$:
 
 $$
 M=U \Sigma V^T
+
 $$
 
 SVD decomposes any linear map into three steps: rotate, stretch, rotate. Specifically:
@@ -60,6 +63,7 @@ An eigenvector of a matrix $A$ is a special vector that remains in the same dire
 
 $$
 A \mathbf{v}=\lambda \mathbf{v}
+
 $$
 
 Geometrically, eigenvectors are the directions that survive a linear transformation unchanged (up to scaling); the eigenvalue $\lambda$ tells you the scaling factor.
@@ -99,6 +103,7 @@ In practice, we often observe pairwise distances rather than coordinates. Given 
 
 $$
 J=I_n-\frac{1}{n} \mathbb{1}\mathbb{1}^T
+
 $$
 
 where $I_n$ is the $n \times n$ identity matrix and $\mathbb{1}$ is the vector of ones.

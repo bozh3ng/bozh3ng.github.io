@@ -12,6 +12,7 @@ Recall Yoneda Lemma: For any functor $F: \mathbf{C} \rightarrow\mathbf{Set}$, wh
 
 $$  
 \operatorname{Nat}(\mathbf{C}(c,-), F) \cong F c  
+
 $$  
 
 that associates a natural transformation $\alpha: \mathbf{C}(c,-) \Rightarrow F$ to the element $\alpha_c\left(1_c\right) \in F c$. Moreover, this correspondence is natural in both $c$ and $F$.
@@ -65,12 +66,14 @@ Recall Yoneda:
 
 $$
 \operatorname{Nat}(\mathbf{C}(-,c), F) \cong F c
+
 $$
 
 We suppose $F=\mathbf{C}(-,d)$, so for any two objects $c, d \in \mathbf{C}$, we have a natural bijection:
 
 $$
 \operatorname{Nat}(Y c, Y d) \cong \mathbf{C}(c, d)
+
 $$
 
 where $Y c=\mathbf{C}(-, c)$ and $Y d=\mathbf{C}(-, d)$.

@@ -61,6 +61,7 @@ In the Gaussian Process context, a kernel must be a covariance function, which i
 
 $$
 k(x, y)=\sigma^2 \exp \left(-\frac{\|x-y\|^2}{2 \ell^2}\right)
+
 $$
 
 where $\sigma^2$ controls how much $f$ varies overall, and $\ell$ controls how quickly the correlation decays with distance. They are hyperparameters. 
@@ -73,6 +74,7 @@ But recall what a kernel means: it measures how correlated $f(x)$ and $f(y)$ are
 
 $$
 \sigma^2 \exp \left(-\frac{d_{\mathcal{M}}(x, y)^2}{2 \ell^2}\right)
+
 $$
 
 
@@ -82,12 +84,14 @@ There is an alternative definition. The Euclidean SE kernel can also be characte
 
 $$
 k_{\infty, \kappa, \sigma^2}(x, y)=\operatorname{cov}(f(x), f(y))
+
 $$
 
 where $f$ is the Gaussian process satisfying the SPDE
 
 $$
 \exp \left(-\frac{\kappa^2}{4} \Delta\right) f=\mathcal{W}
+
 $$
 
 Here $\Delta$ is the Laplacian, $\mathcal{W}$ is Gaussian white noise, and $\exp \left(-\frac{\kappa^2}{4} \Delta\right)$ is the (rescaled) heat semigroup. The length-scale parameter $\kappa$ controls how far correlations spread.
