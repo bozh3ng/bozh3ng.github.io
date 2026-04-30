@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Probability"
+title: "Probability-0"
 date: 2025-10-04
 description: "Probability spaces, conditional probability, random variables, independence, and expectation from measure theory."
 tags: [math, probability]
@@ -8,263 +8,118 @@ created_at: 2025-10-04
 edited_at: 2026-03-31
 ---
 
-# 1. Confusion
+# Three Layers of Probability: Formalism, Models, and Meaning
 
-**Statement**: Toss a coin, the probability of getting a head is 0.5.
+*A foundational note before any probabilistic method appears in this blog.*
 
-There are (at least) two common interpretations of this statement: frequentist and Bayesian.
+## Why bother
 
-In the Frequentist interpretation, probability is defined as the long-run tests and observations. So, if we believe the statement, and we toss the coin 100 times, we will get about 50 heads, maybe 53 maybe 45, but around 50. If we toss the coin many many times , let's say A times, we will observe exactly A/2 heads.
+Machine learning is built on probability. We write loss functions as expectations, treat datasets as samples from distributions, evaluate models by generalization error, and casually say things like "the probability that this image is a cat is $0.97$." The notation is so familiar that we rarely stop to ask what these probabilities *mean*, where they come from, or whether the meaning is even consistent across the different places we use them.
 
-While a Bayesian would say, "We don't know the probability at the beginning; we guess one (as a prior)." Let's (tentatively) believe the probability of getting a head is 1; it doesn't matter whether the belief is right or wrong. Then we update it with more tests. We toss it again, we observe a tail, then the probability can not be 1, we update our belief (as posterior). We toss it again, we update, we toss again... If we toss and update many many times, the belief (as the result of Bayes' theorem) is 0.5
+I think it is worth stopping. One way I have found useful for thinking about probability is to separate three layers: Kolmogorov's axioms (the formal layer), the choice of probability space modeling some real situation (the modeling layer), and the interpretation of what the numbers refer to (the interpretive layer). This is not the only way to organize the subject, but it is one that I find clarifying. The axioms are not in dispute. The modeling involves choices. The interpretation is genuinely philosophical and the right answer depends on what you are doing.
 
-They both intuitively make sense, but again, what does it mean for something to happen with a given probability? If I were told I have a 0.4 probability of passing an exam and can attend it only once, then either I pass it or I don't. What does it mean that I can pass it with probability 0.4? There is no such thing as 0.4 of a diploma. I will take the exam anyway, and I either pass or fail, what is the difference to me between 0.9 and 0.1 probability of passing?
+Before I discuss any probabilistic method on this blog, whether it is variational inference, score matching, Bayesian deep learning, or PAC bounds, I want to lay out these three layers cleanly. Not as a philosophy lecture, but as a habit of mind. When something feels confusing later, the confusion almost always lives at one of these layers, and naming the layer is half the work.
 
-# 2. (Discrete) Probability
+## Two puzzles to start
 
-**Definition**: A finite probability space ($\Omega$ , $\mathbb{P}$) is a finite set $\Omega$  and its (probability) measure P which satisfies
-- $\mathbb{P}(\Omega)=1$
-- $\forall A\subseteq \Omega,\mathbb{P}(A)\geq0$
+**Puzzle 1.** A commentator says, "if there is a nuclear war, $50\%$ of humanity will be eliminated." There is no ensemble of nuclear wars to count frequencies over. So what does the $50\%$ mean?
 
-Technically speaking, a probability space is a triple $(\Omega,\mathcal{A}, \mathbb{P})$; we omit the sigma-algebra to avoid further confusion.
+**Puzzle 2.** A fair die has probability $1/6$ of landing on each face. We say this confidently, but how do we know? We have not rolled the die infinitely many times. And classically the die is deterministic: given exact initial conditions, the outcome is fixed. So where does the $1/6$ come from?
 
-Loosely speaking, probability is a function that maps events (subsets of $\Omega$) to real numbers in $[0, 1]$.
+These are not the same puzzle, but they have the same resolution. Both probabilities are claims about *information states*, not about the world directly. The dice case has a clean symmetry that makes everyone agree on the prior, so the epistemic character is hidden. The nuclear war case has no such symmetry, so the epistemic character is exposed. Same underlying logic.
 
-Toss a coin, the probability of getting a head is 0.5, which means: We construct a set with all the cases of tossing a coin. One case is that we get a head. The probability we are discussing is a function that maps the event "head case" to the real number 0.5.
+## Layer 1: the formalism (Kolmogorov)
 
-I can pass an exam with probability 0.4; that is, there exists a function that maps the event "I pass the exam" to the real number 0.4. The probability 0.4 quantifies my uncertainty before the exam. After the exam, the outcome is determined -- but the probability was still meaningful as a guide for decision-making (e.g., how much to study).
+In 1933, Kolmogorov gave probability a measure-theoretic foundation. A **probability space** is a triple $(\Omega, \mathcal{F}, P)$ where:
 
-# 3. Conditional Probability
+1. $\Omega$ is the sample space, the set of possible outcomes.
+2. $\mathcal{F}$ is a $\sigma$-algebra on $\Omega$, the events to which we can assign probabilities. It contains $\Omega$, is closed under complements, and is closed under countable unions.
+3. $P : \mathcal{F} \to [0,1]$ is a measure satisfying:
+   - **Non-negativity**: $P(A) \geq 0$ for all $A \in \mathcal{F}$.
+   - **Normalization**: $P(\Omega) = 1$.
+   - **Countable additivity**: for pairwise disjoint $A_1, A_2, \ldots \in \mathcal{F}$,
 
-Recall probability space $(\Omega, \mathbb{P})$
+     $$P\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P(A_i).$$
 
-We often want to update probabilities given new information. If we learn that event $B$ has occurred, how should we reassign probabilities to other events? This leads to the definition of conditional probability.
+That is the entire formal content. Every theorem of probability theory (the law of large numbers, the central limit theorem, conditional expectation, martingale convergence, ergodic theorems) is derived from these three axioms plus measure theory.
 
-Given a subset $B\subset\Omega$  with $\mathbb{P}(B)\geq0$, We define a new measure $\mathbb{P}^B:B\rightarrow[0,1]$ by
+Crucially, the axioms say nothing about what $P$ *means*. They are syntax. They tell you the rules a probability assignment must obey to be internally consistent, but they do not tell you where the numbers come from or what they refer to in the world. This is the formal layer, and it is fully objective. Mathematicians do not disagree about it.
 
-$$
-\mathbb{P}^B(\lbrace\omega\rbrace)=\frac{\mathbb{P}(\lbrace\omega\rbrace)}{\mathbb{P}(B)} \quad \text { for } \omega \in B
-$$
+## Layer 2: modeling
 
-$\omega$ is a singleton in $B$, so each $\omega$ is disjoint with each other and $\bigcup\omega=B$
+To use probability for anything, you have to specify a probability space. What is $\Omega$? What is $\mathcal{F}$? What is $P$?
 
-To prove $\mathbb{P}^B$  is a probability measure, we need to show $\mathbb{P}^B(B)=1$, but $\mathbb{P}^B(B)$ has not been computed yet, since $\mathbb{P}^B$ is defined only for singletons so far
+For a die, $\Omega = \lbrace1,2,3,4,5,6\rbrace$, $\mathcal{F} = 2^\Omega$, and $P(\lbracei\rbrace) = 1/6$. For a neural network's predictive distribution, $\Omega$ is the output space, $\mathcal{F}$ is its Borel $\sigma$-algebra, and $P$ is a softmax over logits parametrized by weights. For a Bayesian posterior, $\Omega$ is the parameter space and $P$ is a measure built from prior times likelihood.
 
-By the definition of $\mathbb{P}^B$:
+These specifications are not derived from the axioms. They are modeling choices. Each one involves a claim about the world: "this die is symmetric and fairly thrown," "this output distribution captures predictive uncertainty," "this prior captures my beliefs before seeing data." The axioms then constrain what follows from each choice, but the choice itself is justified by physics, symmetry, prior knowledge, or empirical fit, never by mathematics alone.
 
-$$
-\sum_{\omega \in B} \mathbb{P}^B(\lbrace\omega\rbrace)=\sum_{\omega \in B} \frac{\mathbb{P}(\lbrace\omega\rbrace)}{\mathbb{P}(B)}=\frac{\sum_{\omega \in B} \mathbb{P}(\lbrace\omega\rbrace)}{\mathbb{P}(B)}
-$$
+This layer is where most mistakes happen. Two examples:
 
-By the property of measure, for disjoint subsets
+- A frequentist computes a $p$-value assuming the null hypothesis defines the right probability space. If the null is misspecified, the $p$-value is meaningless, no matter how correctly the integral is evaluated.
+- A Bayesian updates a posterior assuming the prior and likelihood capture the right model. If they do not, the posterior concentrates on the wrong place, no matter how exact the conjugacy.
 
-$$
-\mu(\bigcup \omega)=\sum \mu(\omega)
-$$
+The math inside the model is bulletproof. The map from world to model is not. This is true of every application of mathematics, and probability is not special in this respect, only in how often we forget it.
 
-$$
-\sum_{\omega \in B} \mathbb{P}(\lbrace\omega\rbrace)=\mathbb{P}(\bigcup\lbrace\omega\rbrace)=\mathbb{P}(B)
-$$
+## Layer 3: interpretation
 
-$$
-\sum_{\omega \in B} \mathbb{P}^B(\lbrace\omega\rbrace)=\frac{\mathbb{P}(B)}{\mathbb{P}(B)}=1=\mathbb{P}^B(B)
-$$
+Once a model is fixed, what does $P(A) = 0.3$ actually *refer to*? Here are the main options:
 
-So $\mathbb{P}^B$ is a probability measure defined on $B$. $(B,\mathbb{P}^B)$ is a probability space.
+**Frequentist.** Probability is long-run frequency. $P(A) = 0.3$ means that if you repeated the experiment many times, $A$ would occur about $30\%$ of the time. Natural for repeatable experiments. Awkward for one-shot events, since there is nothing to count.
 
-By the countable subadditivity for disjoint subsets. For any event $A\subset B$ , we have:
+**Subjective Bayesian.** Probability is degree of belief. $P(A) = 0.3$ means you would accept a bet on $A$ at three-to-seven odds. Two agents with different information can assign different probabilities and both are rational. The Dutch book argument and Cox's theorem show that any coherent system of beliefs must obey the Kolmogorov axioms.
 
-$$
-\mathbb{P}^B(A)=\sum_{\omega \in A} \mathbb{P}^B(\lbrace\omega\rbrace)=\frac{\sum_{\omega \in A} \mathbb{P}(\lbrace\omega\rbrace)}{\mathbb{P}(B)}=\frac{\mathbb{P}(A)}{\mathbb{P}(B)}
-$$
+**Objective Bayesian.** Probability is the uniquely rational belief given some information, usually fixed by symmetry or by maximum entropy. The dice $1/6$ is the canonical case: any reasonable agent given only the symmetry of the cube must assign $1/6$ to each face. Tries to keep the Bayesian view without making it personal.
 
-If $A\subset\Omega$ but $A\nsubseteq B$  , we have $A\cap B\subset B$ . So
+**Propensity.** Probability is a physical tendency built into the system itself, not into our heads. The clearest example is quantum mechanics: the Born rule probabilities seem to be genuinely in the world. Radioactive decay rates are similar. Less natural for everyday cases.
 
-$$
-\mathbb{P}^B(A)=\frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
-$$
+In practice, most working scientists are pragmatic pluralists. We use frequentist tools when there is a clear repetition structure (manufacturing tolerances, particle physics cross sections), Bayesian tools when there is not (medical diagnosis on this patient, climate sensitivity, the nuclear war example), and propensity language for quantum systems. The Kolmogorov formalism is shared. The interpretation is chosen to fit the problem.
 
-Usually we denote $\mathbb{P}^B(A)$  as $\mathbb{P}(A\mid B)$ , and call it conditional probability.
+## The bridge: de Finetti's theorem
 
-Note: $\mathbb{P}(A \mid B) = \mathbb{P}(A \cap B) / \mathbb{P}(B)$ is the definition of conditional probability. Bayes' theorem is a consequence: $\mathbb{P}(A \mid B) = \mathbb{P}(B \mid A) \mathbb{P}(A) / \mathbb{P}(B)$, obtained by noting that $\mathbb{P}(A \cap B) = \mathbb{P}(B \mid A) \mathbb{P}(A)$.
+A natural worry is that the Bayesian and frequentist views talk past each other. They do not, and the reason is **de Finetti's representation theorem**.
 
-# 4. Random Variable
-
-A **random variable (RV)** is neither random nor a variable. A random variable is a function $X:\Omega\rightarrow\mathbb{R}$ . (We assume the codomain as real number for simplicity, but it can be any measurable set)
-
-For random variable $X$, when we write "$X=k$", it means the set  $\lbrace\omega\in\Omega:X(\omega)=k\rbrace$
-
-In this way, the notation $\mathbb{P}(X=k)$ means mapping the "$X=k$" set to real number from 0 to 1
-
-## 4.1 Independent and uncorrelated
-
-$X$ and $Y$ are **independent** RVs if for all measurable sets $A, B$:
+If a sequence of events $X_1, X_2, \ldots$ is exchangeable, meaning your beliefs about it are invariant under permutation, then your subjective distribution can be written as a mixture of i.i.d. distributions:
 
 $$
-P(X \in A, Y \in B)=P(X \in A) \cdot P(Y \in B)
+P(X_1, \ldots, X_n) = \int \prod_{i=1}^n p(X_i \mid \theta) \, \pi(\theta) \, d\theta.
 $$
 
-Intuitively, independence means that knowing the value of one random variable gives no information about the other. Their behaviors are entirely unlinked.
+Frequencies emerge from beliefs as soon as you commit to the right symmetry. The frequentist's "true probability" $\theta$ becomes a latent variable; the Bayesian's prior $\pi(\theta)$ describes uncertainty over it. Long-run frequencies and degrees of belief become two ways of looking at the same mathematics.
 
-For multiple RVs, $X_1\dots X_n$ . We say that they are **pairwise independent** if every pair $X_i$ and $X_j$ are independent for all i≠j. Pairwise independence is a relatively weak form of independence.
+This is the deepest reason the formalism is shared across interpretations. Kolmogorov's axioms are flexible enough to host both views, and exchangeability is the bridge between them.
 
-These RVs, $X_1\dots X_n$  are said to be **(fully) independent** if, for every subset $I\in[n]$ , we have
-
-$$
-\mathbb{P}\left[\bigcap_{i \in I} X_i\right]=\prod_{i \in I} \mathbb{P}\left[X_i\right]
-$$
-
-Note: Independence is expensive. For $n$ (different) nontrivial and independent binary events, the size of sample space $\lvert\Omega\rvert\geq2^n$. More generally, if each RV takes $k$ values, we need $\lvert\Omega\rvert \geq k^n$.
-
-Two random variables $X$ and $Y$ are **uncorrelated** if their covariance is zero:
+## The three-layer picture, in one diagram
 
 $$
-\begin{gathered}
-\operatorname{Cov}(X, Y)=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]=\mathbb{E}[XY]-\mathbb{E}[X] \mathbb{E}[Y]=0 \\
-\mathbb{E}[X Y]=\mathbb{E}[X] \mathbb{E}[Y]
-\end{gathered}
+\underbrace{\text{Kolmogorov axioms}}_{\text{syntax}} \;\longrightarrow\; \underbrace{(\Omega, \mathcal{F}, P)}_{\text{model of the world}} \;\longrightarrow\; \underbrace{\text{interpretation}}_{\text{what } P \text{ refers to}}
 $$
 
-Intuitively, uncorrelated random variables have no linear relationship between them.
+Each layer has its own discipline. Mathematics polices the first. Empirical adequacy polices the second. Usefulness and philosophical care police the third.
 
-Independence guarantees that $X$ and $Y$ are uncorrelated. But uncorrelated does not necessarily imply independence. RVs can be uncorrelated but non-linearly dependent.
+When something feels confusing about probability in machine learning, ask which layer the confusion lives at. "Why does my loss not decrease" is a layer 2 question (model misspecification or optimization, not formalism). "What does it mean for my model to be $97\%$ confident on this image" is a layer 3 question (interpretation of softmax outputs, which is genuinely subtle and not settled). "Is my expectation well-defined" is a layer 1 question. Different layers, different tools.
 
-A classic example: let $X \sim \text{Uniform}(-1, 1)$ and $Y = X^2$. Then $\text{Cov}(X, Y) = \mathbb{E}[X^3] - \mathbb{E}[X]\mathbb{E}[X^2] = 0$ (by symmetry), so $X$ and $Y$ are uncorrelated. But $Y$ is completely determined by $X$ -- they are maximally dependent.
+## Why this matters for machine learning specifically
 
-## 4.2 Geometric explanation
+Machine learning sits awkwardly across all three layers, often without admitting it.
 
-Random variables are functions defined on the sample space Ω, they satisfy the axioms of a vector space. So the set of RVs forms a vector space ( Hilbert space L2(Ω) , technically)
+**Generalization theory** is mostly frequentist. PAC bounds, concentration inequalities, and the law of large numbers all assume there is a true data distribution and we are sampling i.i.d. from it. The frequentist machinery is doing real work here.
 
-For simplicity and WLOG, we 'shift' RVs by $X^\prime=X-\mathbb{E}[X]$ , $Y^\prime=Y-\mathbb{E}[Y]$ . Shift doesn't affect the properties of vectors. In this case, $\mathbb{E}(X)=\mathbb{E}(Y)=0$
+**Bayesian deep learning** is, obviously, Bayesian. Posterior over weights, predictive distribution, epistemic uncertainty. The interpretation of $P(w \mid \mathcal{D})$ is a degree of belief, not a frequency.
 
-The expectation corresponds to the inner product in $L^2$
+**Probabilistic models** (VAEs, diffusion, normalizing flows) often blur the layers. The latent variable model $p(x, z) = p(x \mid z) p(z)$ is a generative claim about the world, but the posterior $p(z \mid x)$ is usually treated Bayesianly. The training objective (ELBO) is derived as if the model is a true description, but in practice we know it is not, so the inferred posteriors are calibrated by empirical performance rather than philosophical commitment.
 
-$$
-\langle X, Y\rangle=\mathbb{E}[X Y]
-$$
+**Frequentist guarantees on Bayesian methods** (PAC-Bayes, posterior contraction theorems) explicitly use both interpretations at once: a Bayesian construction analyzed by frequentist criteria.
 
-The $L^2$-norm of $X$ is
+None of this is incoherent, but it is rarely made explicit. Keeping the three layers separate is what lets you reason clearly about, for example, whether a softmax output should be trusted as a probability of correctness (rarely, because the model is misspecified at layer 2), or whether a Bayesian neural network's uncertainty estimates are meaningful (depends on whether the prior is doing real work, a layer 2 question dressed up in layer 3 language).
 
-$$
-\|X\|=\sqrt{\mathbb{E}\left[X^2\right]}
-$$
+## A working habit
 
-The variance of $X$ is its squared $L^2$-norm:
+For any probabilistic method I write about on this blog, I will try to be explicit about:
 
-$$
-\operatorname{Var}(X)=\mathbb{E}\left[(X-\mathbb{E}[X])^2\right]=\mathbb{E}\left[\left(X^{\prime}\right)^2\right]=\left\|X^{\prime}\right\|^2
-$$
+1. **The formalism.** What is the probability space? What measurability conditions matter?
+2. **The model.** What real-world claim is being made by the choice of $\Omega$, $\mathcal{F}$, $P$? What gets ignored?
+3. **The interpretation.** Are these probabilities frequencies, beliefs, propensities, or something else? What follows from the choice?
 
-In this geometric picture, uncorrelated means orthogonal in $L^2$: $\langle X', Y' \rangle = \text{Cov}(X,Y) = 0$. Independence is a strictly stronger condition -- it means the joint distribution factors, not just that the inner product vanishes. Orthogonality is a statement about one number (the inner product); independence is a statement about the entire joint distribution.
+The reason is not pedantry. It is that the most interesting failures in probabilistic ML happen when one layer's success is mistakenly read as another layer's success. A model that fits the data well (layer 2 success) does not have correct uncertainties (layer 3 claim). An exact MCMC sampler (layer 1 success) does not justify the prior (layer 2 claim). A theorem with explicit constants (layer 1) does not mean the assumptions hold in your application (layer 2).
 
-# 5. Expectation
-
-First recall **probability space** is a triple $(\Omega, \mathcal{F}, \mathbb{P})$ , where $\mathcal{F}$ is a sigma-algebra, the **probability** $\mathbb{P}$ is a function $\mathbb{P}:\mathcal{F}\rightarrow[0,1]$ that satisfies non-negativity, normalization, countable additivity.
-
-For a continuous random variable $X$ , the **Probability Density Function** (PDF) $f(x)$ is a function such that:
-
-$$
-\mathbb{P}(a \leq X \leq b)=\int_a^b f(x) d x
-$$
-
-Or
-
-$$
-\mathbb{P}(A)=\int_A f(x) d x \quad \text { for all sets } A
-$$
-
-Note that $f(x)$ is not $P(X=x)$. Rather, $f(x)dx$ represents the infinitesimal probability that X falls in a tiny interval around $x$.
-
-For any measurable function $g$, the **expectation** of function $g$ in probability $P$ is defined as
-
-$$
-\mathbb{E}[g(X)]:=\int g(x) d P(x)
-$$
-
-There is a bit confusing notation: $\mathbb{P}(x)$ is not a function of single point $x$, $\mathbb{P}(\cdot)$ is a measure acts on sets, not points:
-- $\mathbb{P}(\lbrace x\rbrace)$ is the probability of the singleton set $\lbrace x\rbrace$
-- $\mathbb{P}([a,b])$ is probability that X falls in $[a,b]$
-- $\mathbb{P}(A)$ is the probability of event A
-
-So in $\mathbb{P}(x)$, the $x$ is a notation of sets, $\mathbb{P}$ is a measure that assigns probabilities to sets.
-
-Another slightly confusing notation: What does $d\mathbb{P}(x)$ mean?
-
-$d\mathbb{P}(x)$ is a notation Lebesgue integration, means an infinitesimal "probability element." We can analogy it to the common $dx$ in Riemann integral which represents an infinitesimal "length element."
-
-So in $d\mathbb{P}(x)$, the $x$ is not the input parameter for $\mathbb{P}$, it indicates the variable of integration.
-
-A more explicit notation is:
-
-$$
-\int g \, d\mathbb{P}\quad \text { or }\quad \int g(x) \, \mathbb{P}(d x)
-$$
-
-In $\int g(x) \, \mathbb{P}(d x)$, the $x$ in $\mathbb{P}(dx)$ represents a single point in the sample space (e.g., a real number in $\mathbb{R}$).
-
-Back to
-
-$$
-\mathbb{E}[g(X)]:=\int g(x) \, d\mathbb{P}(x)
-$$
-
-If $\mathbb{P}$ has density $f$, which means there exists a $f$ such that
-
-$$
-\mathbb{P}(A)=\int_A f(x) \, d x \quad \text { for all sets } A
-$$
-
-Then:
-
-$$\int g(x) \, d\mathbb{P}(x)=\int g(x) f(x) \, d x$$
-
-Note: In $\int g(x) \, d\mathbb{P}(x)$, the first $x$ in $g(x)$ means a single point, but the second $x$ in $\mathbb{P}(x)$ means a set, because $\mathbb{P}$ is a probability measure. In $\int g(x) f(x) \, d x$, all the $x$ means a single point.
-
-## Expectation is integration
-
-The connection emerges: expectation is integration against a probability measure. If $X \sim P$ (meaning $X$ is distributed according to $P$ ), then by definition:
-
-$$
-\mathbb{E}_{X \sim \mathbb{P}}[g(X)] {:=} \int g(x) \, d\mathbb{P}(x)
-$$
-
-If $f$ is a density for probability measure $\mathbb{P}$ , then for any measurable $g$ :
-
-$$
-\int g(x) f(x) \, d x=\int g(x) \, \mathbb{P}(d x)=\mathbb{E}_{X \sim \mathbb{P}}[g(X)]
-$$
-
-This is a common trick to study intractable integral using probability tools, especially Monte Carlo. (See PML - From Likelihood to ELBO ELBO)
-
-Nice! Then how do we know $f$ is a density?
-
-A function $\mathrm{f}: \mathbb{R} \rightarrow \mathbb{R}$ is a valid probability density if and only if:
-1. Non-negativity:
-
-$$
-f(x) \geq 0 \quad \text { for all } x
-$$
-
-2. Normalization:
-
-$$
-\int_{-\infty}^{\infty} f(x) d x=1
-$$
-
-3. Measurability: this condition almost always satisfied.
-
-One caveat: All the statements need $g(x)$ to be bounded or well-behaved so $\mathbb{E}[\lvert g(X)\rvert]<\infty$.
-
-Another caveat: Density and probability are not one-to-one correspondence: Discrete distributions have no density with respect to Lebesgue measure (they do have densities with respect to counting measure); when a density exists, it's unique to probability only "almost everywhere."
-
-## What is distribution?
-
-Roughly it means probability of random variable $X$. The distribution of a random variable $X$ is the probability measure $P_X$ on the target space defined by:
-
-$$
-P_X(A)=P(X \in A)
-$$
-
-It tells us how probability is "distributed" across possible values of $X$.
-
-The distribution $P_X$ is a pushforward of the original measure $P$ through the function $X$: it "pushes" the probability from the abstract sample space $\Omega$ to the concrete value space $\mathbb{R}$. This pushforward perspective becomes central in probabilistic machine learning (see the PML article for how it connects to generative models and latent variables).
+The mathematics is a tool. It is exact and trustworthy. The map from the world to the mathematics, and the meaning we assign to the mathematics on the way back, are where the real intellectual work lives.

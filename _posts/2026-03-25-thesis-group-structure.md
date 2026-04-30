@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Part 2 - The Group Structure of Neural Networks"
+title: "Part2-GroupStructure"
 date: 2026-03-25
 description: "How activation functions and regularization break the symmetry group of deep networks, traced from GL(n) through specific subgroups."
 tags: [math, machine-learning, thesis, deep-learning, algebra]
@@ -11,7 +11,6 @@ edited_at: 2026-03-31
 # The group structure: a type of formalized prior knowledge
 
 *Part 2 of 5, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %})*
-
 
 Code can be found in https://github.com/bozh3ng/ThesisExp part2_group_structure.
 
@@ -65,7 +64,7 @@ Now introduce a nonlinear activation $\sigma$ between layers. The reparametrizat
 
 This surviving symmetry is the *centralizer* of the activation:
 
-$$\mathrm{Cent}(\sigma) = \{K \in \mathrm{GL}(n) : \sigma(Kz) = K\sigma(z) \text{ for all } z\}$$
+$$\mathrm{Cent}(\sigma) = \lbraceK \in \mathrm{GL}(n) : \sigma(Kz) = K\sigma(z) \text{ for all } z\rbrace$$
 
 Different activations yield dramatically different centralizers.
 
@@ -98,6 +97,7 @@ Sigmoid thus encodes a stronger prior than ReLU. It breaks more symmetry, leavin
 This gives a strict chain of subgroups:
 
 $$S_n \;\subsetneq\; \mathcal{D}^+ \rtimes S_n \;\subsetneq\; \mathrm{GL}(n)$$
+
 $$\text{(sigmoid)} \qquad\quad \text{(ReLU)} \qquad\quad \text{(linear)}$$
 
 More symmetry broken means fewer equivalent parametrizations, which means a stronger structural commitment. The price of ReLU's extra symmetry (positive rescaling freedom) is a form of under-determination that sigmoid avoids; the benefit is a simpler loss surface with more equivalent paths to each function.
@@ -229,7 +229,7 @@ The orbit is not one-dimensional but $n^2$-dimensional. We verify flatness along
 
 ![Ex5_fig_multiple_orbit_directions.png](/assets/img/blog/thesis-group-structure/Ex5_fig_multiple_orbit_directions.png)
 
-Finally, we decompose the gradient into orbit and cross-orbit components by projecting onto the orbit tangent space $T_\text{orbit} = \{(AW_1, -W_2 A) : A \in \mathfrak{gl}(n)\}$ via least-squares. The cross-orbit component accounts for all loss reduction ($\sim 10^{-4}$); the orbit component contributes nothing ($\sim 10^{-9}$). The gradient is orthogonal to the orbit, as it must be.
+Finally, we decompose the gradient into orbit and cross-orbit components by projecting onto the orbit tangent space $T_\text{orbit} = \lbrace(AW_1, -W_2 A) : A \in \mathfrak{gl}(n)\rbrace$ via least-squares. The cross-orbit component accounts for all loss reduction ($\sim 10^{-4}$); the orbit component contributes nothing ($\sim 10^{-9}$). The gradient is orthogonal to the orbit, as it must be.
 
 ![Ex5_fig_gradient_decomposition.png](/assets/img/blog/thesis-group-structure/Ex5_fig_gradient_decomposition.png)
 

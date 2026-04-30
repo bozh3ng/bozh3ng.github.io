@@ -28,14 +28,15 @@ Intuition: any point in a convex set can be represented as a point on a line seg
 
 ## Examples 
 For any non-zero $a \in \mathbb{R}^n$ and $b \in \mathbb{R}$, the set
-- $\lbrace x \in \mathbb{R}^n: a^T x \leq 0 \rbrace$ is a **linear halfspace**
-- $\lbrace x \in \mathbb{R}^n: a^T x \leq b \rbrace$ is an **affine halfspace**.
+
+- $\lbracex \in \mathbb{R}^n: a^T x \leq 0\rbrace$ is a **linear halfspace**
+- $\lbracex \in \mathbb{R}^n: a^T x \leq b\rbrace$ is an **affine halfspace**.
 All these sets are convex.
 If $n \geq 2$, then they have no extreme points.
 
-The **nonnegative orthant** $\mathbb{R}_{+}^n:=\lbrace x \in \mathbb{R}^n: x_i \geq 0 \text{ for } i=1, \ldots, n \rbrace$ is a convex cone.
+The **nonnegative orthant** $\mathbb{R}_{+}^n:=\lbracex \in \mathbb{R}^n: x_i \geq 0\right.$ for $\left.i=1, \ldots, n\rbrace$ is a convex cone.
 
-The sublevel set $\lbrace x : x^T A x + b^T x + c \leq 0 \rbrace$, where $A \succeq 0$, is convex.
+The sublevel set $\lbracex : x^T A x + b^T x + c \leq 0\rbrace$, where $A \succeq 0$, is convex.
 
 A set $S \subseteq \mathbb{R}^n$ is a **cone** if $\lambda \geq 0, x \in S$ implies $\lambda x \in S$.
 Not all cones are convex sets 
@@ -52,7 +53,7 @@ If the feasible region is non-empty, then the LP is called **feasible**.
 $$
 \begin{array}{ll}
 \text { minimize } & c^T x\quad \text{(objective function)} \\
-\text { subject to } & \lbrace x \in \mathbb{R}^n: A x=b, x \geq 0 \rbrace \quad \text{(feasible region)}
+\text { subject to } & \lbracex \in \mathbb{R}^n: A x=b, x \geq 0\rbrace \quad \text{(feasible region)}
 \end{array}
 $$
 
@@ -80,8 +81,9 @@ Short proof: $b^T y=y^T b=y^T(A x)=\left(A^T y\right)^T x \leq c^T x$
 
 ## Strong duality
 If both primal and dual problems are **feasible**, means 
-- the primal set $\lbrace x \mid A x=b, x \geq 0 \rbrace$ is non-empty
-- the dual set $\lbrace y \mid A^T y \leq c \rbrace$ is non-empty. 
+
+- the primal set $\lbracex \mid A x=b, x \geq 0\rbrace$ is non-empty
+- the dual set $\lbracey \mid A^T y \leq c\rbrace$ is non-empty. 
 Then they achieve exactly the same optimal value.
 REMARK: Every linear program (that is feasible and bounded) is strong duality
 
@@ -117,6 +119,7 @@ $$
 $$
 
 where
+
 - $x \in \mathbb{R}^m$ is the variable,
 - $c \in \mathbb{R}^m$ is a given cost vector,
 - $F_0, F_1, \ldots, F_m$ are symmetric matrices (of the same dimension $n \times n$ ),
@@ -128,7 +131,7 @@ $$
 \begin{array}{ll}
 \text { minimize } & 2 x_{11}+2 x_{12} \\
 \text { subject to } & x_{11}+x_{22}=1,\\ 
-& \begin{pmatrix} x_{11} & x_{12} \\ x_{12} & x_{22} \end{pmatrix} \succeq 0 
+& \begin{pmatrix}x_{11} & x_{12} \\ x_{12} & x_{22}\end{pmatrix} \succeq 0 
 \end{array}
 $$
 
@@ -148,7 +151,7 @@ Example:
 $$
 \begin{array}{ll}
 \text { maximize } & y \\
-\text { subject to } & \begin{pmatrix} 2-y & 1 \\ 1 & -y \end{pmatrix} \succeq 0
+\text { subject to } & \begin{pmatrix}2-y & 1 \\ 1 & -y\end{pmatrix} \succeq 0
 \end{array}
 $$
 
@@ -167,7 +170,7 @@ If both the primal and dual problems are strictly feasible, then their optimal s
 
 # Application
 ## Euclidean distance problem
-From Distances to Coordinates(Euclidean)
+[From Distances to Coordinates (Euclidean)]({% post_url 2026-03-26-from-distances-to-coordinates %})
 Recall the Euclidean distance matrix completion problem. If $D^{(2)}$ misses some data, we cannot use cMDS to find the points.
 We can write the entries of a squared distance matrix in terms of Gram matrix:
 
@@ -207,11 +210,11 @@ One can apply cMDS to the solution obtained by the SDP relaxation to obtain a so
 Flatten the graph associated with a partial Euclidean distance matrix by pulling the vertices of the graph as far from each other as possible.
 Formally, we want to maximize 
 
-$$\sum_{i, j=1}^n\left\|x_i-x_j\right\|$$
+$$\sum_{i, j=1}^n\lVertx_i-x_j\rVert$$
 
 And we can prove that 
 
-$$\sum_{i, j=1}^n\left\|x_i-x_j\right\|=2 n \operatorname{Tr}(G)$$
+$$\sum_{i, j=1}^n\lVertx_i-x_j\rVert=2 n \operatorname{Tr}(G)$$
 
 REMARK: Often minimize rank $(G)$ is replaced by minimize $\operatorname{Tr}(G)$, which is called the **nuclear norm heuristic**.
 Geometric interpretation of minimizing $\operatorname{Tr}(G)$ is bringing vertices as close together as possible. Conversely, maximizing $\operatorname{Tr}(G)$ pushes points apart, favoring higher embedding dimension.
@@ -239,7 +242,7 @@ $$
 $$
 
 ## PCA
-Recall PCA
+Recall [Principal Component Analysis]({% post_url 2025-10-04-pca %})
 Consider an $n \times p$ centered data matrix $X$, where rows of $X$ contain results for different repeats of the experiment and columns of $X$ record different features.
 
 The **covariance matrix** is 
@@ -254,6 +257,7 @@ First **principal component** is the direction that explains the most variance.
 The principal components are *normalized eigenvectors* of data's covariance matrix or equivalently the *right singular vectors* of $X$.
 
 PCA in a SDP view:
+
 - Principal components are *linear combinations* of all variables
 - We are trying to *maximize the variance* by a particular linear combination of the input variables (a direction) while constraining the number of nonzero coefficients in this combination.
 
@@ -272,6 +276,7 @@ $$
 
 But this optimization problem is hard because of the cardinality constraint.
 Consider $X=x x^T$ :
+
 - $X \succeq 0$
 - $\operatorname{Rank}(X)=1$
 - $\|x\|_2=1 \Leftrightarrow \operatorname{Tr}(X)=1$
@@ -318,6 +323,7 @@ Since we replaced $\operatorname{Card}(X) \leq k^2$ by the relaxed constraint $\
 If  $\operatorname{Card}\left(x_1\right) \geq k$, we can just use "simple thresholding" to set small entries to 0 
 
 Iteration (deflation):
+
 - $\Sigma_1=\Sigma$ to find $x_1$
 - $\Sigma_2=\Sigma_1-\left(x_1^T \Sigma_1 x_1\right) x_1 x_1^T$ to find $x_2$
 - ...

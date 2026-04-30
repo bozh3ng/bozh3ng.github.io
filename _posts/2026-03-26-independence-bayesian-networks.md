@@ -8,6 +8,8 @@ created_at: 2026-03-26
 edited_at: 2026-03-31
 ---
 
+Future me will need this when I lost the intuition about conditional independence, or Bayesian Networks. 
+
 # 1. Bayesian Network
 
 Bayesian Network(**BN**) is composed of Directed Acyclic Graph (**DAG**) and Conditional Probability Tables (**CPT**)
@@ -21,12 +23,12 @@ Because in a Bayesian Network, events happen sequentially. The sequence of nodes
 One can think of CPT as prior knowledge; its probabilities may change as we acquire more observations. We write $P(AB)$ for the joint probability $P(A \cap B)$ throughout this article.
 
 
-
 _Example_
 A simple BN with DAG:
 
 ```
 A --> B
+
 ```
 
 and CPT:
@@ -53,6 +55,7 @@ Given a BN with DAG:
 
 ```
 A --> B
+
 ```
 
 and CPT:
@@ -81,6 +84,7 @@ Given a BN with DAG:
 
 ```
 A --> B --> C
+
 ```
 
 and CPT:
@@ -123,6 +127,7 @@ Given a BN with DAG:
 
 ```
 A <-- B --> C
+
 ```
 
 and CPT:
@@ -156,8 +161,10 @@ So, $A$ and $C$ are _conditionally_ _independent_ given $B$
 ## Case 4
 
 Given a BN with DAG:
+
 ```
 A --> B <-- C
+
 ```
 
 and CPT:
@@ -209,4 +216,3 @@ $A\leftarrow B\rightarrow C$, $A$ and $C$ are not independent. $A$ and $C$ are _
 $A\rightarrow B \leftarrow C$, $A$ and $C$ are independent. $A$ and $C$ are not independent given $B$
 
 The general rule: a path between two nodes is **blocked** (d-separated) if it contains either (1) a non-collider that is conditioned on, or (2) a collider that is _not_ conditioned on (and has no conditioned descendant). Two nodes are conditionally independent given a set of observed nodes if and only if every path between them is blocked.
-

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Part 3 - Path Equivariance: From Groups to Geometry"
+title: "Part3-PathEquivariance"
 date: 2026-03-25
 description: "Generalizing group equivariance to path equivariance on manifolds, with fiber bundles and the content-pose decomposition."
 tags: [math, machine-learning, thesis, deep-learning, differential-geometry]
@@ -10,7 +10,7 @@ edited_at: 2026-03-31
 
 # Path equivariance: from groups to geometry
 
-*Part 3 of 5, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %}), [Part 2 - The Group Structure of Neural Networks]({% post_url 2026-03-25-thesis-group-structure %})*
+*Part 3 of 5, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %}), [Part 2: The Group Structure of Neural Networks]({% post_url 2026-03-25-thesis-group-structure %})*
 
 
 ---
@@ -96,7 +96,7 @@ This connects path equivariance to the classical differential geometry toolkit: 
 
 A natural question: when does path equivariance reduce back to classical group equivariance? The answer reveals the precise relationship between the two.
 
-The key is the *endpoint condition (I made this up)*: if all paths leading to the same group element $g$ induce the same transport endpoint $a_\gamma(1)$, regardless of which path was taken, then the transport depends only on the endpoint, not on the path. In this case, the map $g \mapsto a_\gamma(1)$ becomes a well-defined group homomorphism $\rho: G \to A$, and we recover:
+The key is the *endpoint condition (my own terminology)*: if all paths leading to the same group element $g$ induce the same transport endpoint $a_\gamma(1)$, regardless of which path was taken, then the transport depends only on the endpoint, not on the path. In this case, the map $g \mapsto a_\gamma(1)$ becomes a well-defined group homomorphism $\rho: G \to A$, and we recover:
 
 $$F(g \cdot x) = \rho(g) \cdot F(x)$$
 
@@ -127,7 +127,7 @@ Every data point decomposes uniquely as $x = g \cdot c(u)$: a content $u$ at a c
 
 *Content paths* move between orbits: $\gamma(t) = c(u(t))$, keeping the pose canonical and varying the content. Morphing from Alice's face to Bob's face at a fixed angle. These paths have no group structure; the content space $U$ is just a manifold, not a group. There is no homomorphism to exploit, no weight-sharing trick to deploy. Path equivariance on content paths can only be enforced as a *soft constraint*, a smoothness regularization encouraging the network's output to vary continuously as content varies:
 
-$$\mathcal{L}_{\text{smooth}} = \int \left\|\frac{d}{dt} F(c(\gamma_U(t)))\right\|^2 dt$$
+$$\mathcal{L}_{\text{smooth}} = \int \lVert\frac{d}{dt} F(c(\gamma_U(t)))\rVert^2 dt$$
 
 This asymmetry (hard constraints for pose, soft constraints for content) is not a design choice. It is a consequence of the mathematics. Pose lives in a group; content does not. The path equivariance framework makes this distinction precise and explains *why* certain invariances can be built into architectures (translation equivariance in CNNs) while others must be learned through training (similarity between different objects).
 

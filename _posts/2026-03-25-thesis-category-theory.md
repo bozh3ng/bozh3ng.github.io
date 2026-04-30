@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Parr 4 - A Category Theory Perspective on Neural Networks"
+title: "Part4-CategoryTheoryPerspective"
 date: 2026-03-25
 description: "Equivariance is naturality: unifying groups, manifolds, and path equivariance through category theory."
 tags: [math, machine-learning, thesis, deep-learning, category-theory]
@@ -10,7 +10,9 @@ edited_at: 2026-03-31
 
 # A category theory perspective: what models really are
 
-*Part 4 of 5, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %}), [Part 2 - The Group Structure of Neural Networks]({% post_url 2026-03-25-thesis-group-structure %}), [Part 3 - Path Equivariance: From Groups to Geometry]({% post_url 2026-03-25-thesis-path-equivariance %})*
+*Part 4 of 4, following [Part 1: Prior Knowledge]({% post_url 2026-03-25-thesis-prior-knowledge %}), [Part 2: The Group Structure of Neural Networks]({% post_url 2026-03-25-thesis-group-structure %}), [Part 3: Path Equivariance]({% post_url 2026-03-25-thesis-path-equivariance %})*
+
+In this section we use category theory to formalize and unify the prior knowledge, group structure, and path equivariance frameworks from the preceding parts. Although highly abstract, the categorical perspective is surprisingly clear: it gives a name to all the structures we have been building. A model is a functor, and a good model is one whose layers are natural transformations. The equivariance conditions we have discussed throughout are instances of naturality -- the same commuting square, in different guises. This gives us a high-level language for reasoning about what a model preserves and what it discards.
 
 ---
 
@@ -117,4 +119,4 @@ And naturality is just a commuting square: act then map equals map then act. Eve
 
 ---
 
-*This concludes the four-part series based on the thesis "Exploring the Structure in Deep Networks: Group, Manifold and Category Theory" (Aalto University, 2025).*
+*This concludes the five-part series based on the thesis "Exploring the Structure in Deep Networks: Group, Manifold and Category Theory" (Aalto University, 2025).*

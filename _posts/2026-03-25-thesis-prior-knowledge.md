@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Part 1 - Prior Knowledge"
+title: "Part1-PriorKnowledge"
 date: 2026-03-25
 description: "Prior knowledge in neural networks: every design choice encodes a structural assumption about the world."
 tags: [math, machine-learning, thesis, deep-learning]
@@ -8,16 +8,13 @@ created_at: 2026-03-25
 edited_at: 2026-03-31
 ---
 
-(This is an unintentional pun)
+*Part 1 of 5*
 
----
-
-
-# Prior knowledge - what we believe
+# What we believe
 
 The conversation around neural networks often starts with training. Loss functions, gradient descent, convergence: the machinery that turns data into predictions. But by the time training begins, the interesting decisions have already been made. How many layers, which activation, what regularization, what architecture at all. Every one of these choices encodes a belief about the problem, and every belief is a form of knowledge injected before the model has seen a single example.
 
-What I mean *prior knowledge*  here not only in the Bayesian sense of a distribution over parameters, but in the broader one: any structural assumption about the world that gets baked into the model before data arrives. Prior knowledge is not what the model learns. It is what _humans directly teach the model_ by choosing its structure. A fully general network can in principle learn anything from data (UAT). But "can learn in principle" is not "will learn in practice." Prior knowledge tries to remove that burden: it gives the model something for free, so it doesn't waste capacity rediscovering what the designer already knew.
+What we mean *prior knowledge*  here not only in the Bayesian sense of a distribution over parameters, but in the broader one: any structural assumption about the world that gets baked into the model before data arrives. Prior knowledge is not what the model learns. It is what _humans directly teach the model_ by choosing its structure. A fully general network can in principle learn anything from data (UAT). But "can learn in principle" is not "will learn in practice." Prior knowledge tries to remove that burden: it gives the model something for free, so it doesn't waste capacity rediscovering what the designer already knew.
 
 Technically, injecting prior knowledge constrains the model to a _subspace_ of the full function space. If the prior is correct, it contains the optimal solution. The model searches a smaller space and finds the answer faster, with less data and better generalization. The prior helps by _removing everything the model doesn't need_.
 

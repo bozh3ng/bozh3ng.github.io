@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Part 3.5 - Path Equivariance Recovery Proof"
+title: "Part3.5-PERecoveryProof"
 date: 2026-04-28
 description: "A complete proof that classical group equivariance is recovered from path equivariance under the endpoint condition, establishing classical equivariant networks as a special case of the PEN framework."
 tags: [math, machine-learning, thesis, deep-learning, differential-geometry]
@@ -24,7 +24,7 @@ The logical chain proceeds as follows:
 
 1. **Define path equivariance (PE).** Given a path system $\mathcal{P}$ on input space $X$ and a Lie group $A$ acting on output space $Z$, a map $F: X \to Z$ is PE if traversing any path $\gamma \in \mathcal{P}$ in $X$ induces a continuous transport $a_\gamma: [0,1] \to A$ satisfying $F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0))$. *(Definition 2.5)*
 
-2. **Introduce the endpoint condition.** If two paths in $G$ share the same endpoints, their transports agree at $t=1$. This allows us to define a map $\rho: G^0 \to A$ by $\rho(g) := a_\gamma(1)$, independent of path choice. *(Definitions 3.1--3.2)*
+2. **Introduce the endpoint condition.** If two paths in $G$ share the same endpoints, their transports agree at $t=1$. This allows us to define a map $\rho: G^0 \to A$ by $\rho(g) := a_\gamma(1)$, independent of path choice. *(Definitions 3.1–3.2)*
 
 3. **Prove $\rho$ is a group homomorphism.** The path $e \to g_1 g_2$ decomposes as $e \xrightarrow{\gamma_2} g_2 \xrightarrow{\gamma_1 \cdot g_2} g_1 g_2$, and the transport along this concatenation factors as $\rho(g_1) \cdot \rho(g_2)$. *(Proposition 4.1)*
 
@@ -50,17 +50,13 @@ The key insight: classical equivariance relates *isolated pairs of points* $(x, 
 
 If $\gamma_1, \gamma_2$ are paths with $\gamma_1(1) = \gamma_2(0)$, their concatenation is:
 
-$$
-(\gamma_1 \| \gamma_2)(t) = \begin{cases} \gamma_1(2t) & t \in [0, 1/2] \\ \gamma_2(2t - 1) & t \in [1/2, 1] \end{cases}
-$$
+$$(\gamma_1 \| \gamma_2)(t) = \begin{cases} \gamma_1(2t) & t \in [0, 1/2] \\ \gamma_2(2t - 1) & t \in [1/2, 1] \end{cases}$$
 
 **Definition 2.2** (Path System). A path system on a topological space $X$ is a non-empty family of continuous paths $\gamma: [0,1] \to X$ that is closed under reparametrization and concatenation.
 
 **Definition 2.3** (Group Path System). Let $G \curvearrowright X$. The group path system is:
 
-$$
-\mathcal{P} = \lbrace \gamma_X: [0,1] \to X \mid \gamma_X(t) = \gamma_G(t) \cdot x \text{ for some } x \in X,\; \gamma_G: [0,1] \to G \text{ continuous},\; \gamma_G(0) = e \rbrace.
-$$
+$$\mathcal{P} = \lbrace\gamma_X: [0,1] \to X \mid \gamma_X(t) = \gamma_G(t) \cdot x \text{ for some } x \in X,\; \gamma_G: [0,1] \to G \text{ continuous},\; \gamma_G(0) = e\rbrace.$$
 
 **Proposition 2.4.** *The group path system $\mathcal{P}$ is a path system.*
 
@@ -68,35 +64,25 @@ $$
 
 **Reparametrization.** Let $\gamma_X(t) = \gamma_G(t) \cdot x \in \mathcal{P}$ and let $\phi: [0,1] \to [0,1]$ be continuous with $\phi(0) = 0$, $\phi(1) = 1$. Define $\tilde{\gamma}_G(t) := \gamma_G(\phi(t))$. Then $\tilde{\gamma}_G$ is continuous, $\tilde{\gamma}_G(0) = \gamma_G(\phi(0)) = \gamma_G(0) = e$, and
 
-$$
-(\gamma_X \circ \phi)(t) = \gamma_G(\phi(t)) \cdot x = \tilde{\gamma}_G(t) \cdot x \in \mathcal{P}.
-$$
+$$(\gamma_X \circ \phi)(t) = \gamma_G(\phi(t)) \cdot x = \tilde{\gamma}_G(t) \cdot x \in \mathcal{P}.$$
 
 **Concatenation.** Let $\gamma_{X,1}(t) = \gamma_{G,1}(t) \cdot x_1$ and $\gamma_{X,2}(t) = \gamma_{G,2}(t) \cdot x_2$ be in $\mathcal{P}$ with $\gamma_{X,1}(1) = \gamma_{X,2}(0)$. The matching condition gives $\gamma_{G,1}(1) \cdot x_1 = e \cdot x_2 = x_2$, so $x_2 = \gamma_{G,1}(1) \cdot x_1$. The concatenation is:
 
-$$
-(\gamma_{X,1} \| \gamma_{X,2})(t) = \begin{cases} \gamma_{G,1}(2t) \cdot x_1 & t \in [0, 1/2] \\ \gamma_{G,2}(2t-1) \cdot \gamma_{G,1}(1) \cdot x_1 & t \in [1/2, 1] \end{cases}
-$$
+$$(\gamma_{X,1} \| \gamma_{X,2})(t) = \begin{cases} \gamma_{G,1}(2t) \cdot x_1 & t \in [0, 1/2] \\ \gamma_{G,2}(2t-1) \cdot \gamma_{G,1}(1) \cdot x_1 & t \in [1/2, 1] \end{cases}$$
 
 Define the concatenated group path:
 
-$$
-\tilde{\gamma}_G(t) = \begin{cases} \gamma_{G,1}(2t) & t \in [0, 1/2] \\ \gamma_{G,2}(2t-1) \cdot \gamma_{G,1}(1) & t \in [1/2, 1] \end{cases}
-$$
+$$\tilde{\gamma}_G(t) = \begin{cases} \gamma_{G,1}(2t) & t \in [0, 1/2] \\ \gamma_{G,2}(2t-1) \cdot \gamma_{G,1}(1) & t \in [1/2, 1] \end{cases}$$
 
 We verify: $\tilde{\gamma}_G(0) = \gamma_{G,1}(0) = e$; and continuity at $t = 1/2$ holds because
 
-$$
-\lim_{t \to 1/2^+} \tilde{\gamma}_G(t) = \gamma_{G,2}(0) \cdot \gamma_{G,1}(1) = e \cdot \gamma_{G,1}(1) = \gamma_{G,1}(1) = \lim_{t \to 1/2^-} \tilde{\gamma}_G(t).
-$$
+$$\lim_{t \to 1/2^+} \tilde{\gamma}_G(t) = \gamma_{G,2}(0) \cdot \gamma_{G,1}(1) = e \cdot \gamma_{G,1}(1) = \gamma_{G,1}(1) = \lim_{t \to 1/2^-} \tilde{\gamma}_G(t).$$
 
 Therefore $(\gamma_{X,1} \| \gamma_{X,2})(t) = \tilde{\gamma}_G(t) \cdot x_1 \in \mathcal{P}$. $\square$
 
 **Definition 2.5** (Path Equivariance). Let $G \curvearrowright X$, let $A$ be a Lie group acting on a manifold $Z$, and let $\mathcal{P}$ be a path system on $X$. A continuous map $F: X \to Z$ is **path equivariant** with respect to $\mathcal{P}$ if for every $\gamma \in \mathcal{P}$, there exists a continuous transport $a_\gamma: [0,1] \to A$ with $a_\gamma(0) = e_A$ such that
 
-$$
-F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0)) \quad \forall t \in [0,1].
-$$
+$$F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0)) \quad \forall t \in [0,1].$$
 
 We further assume the transport is **base-point independent**: for a group path $\gamma_G: [0,1] \to G$, the transport $a_{\gamma_G}$ depends only on $\gamma_G$, not on the choice of $x \in X$.
 
@@ -106,15 +92,11 @@ We further assume the transport is **base-point independent**: for a group path 
 
 **Definition 3.1** (Endpoint Condition). A path-equivariant map $F$ satisfies the endpoint condition if, for all group paths $\gamma_1, \gamma_2: [0,1] \to G^0$ with $\gamma_1(0) = \gamma_2(0) = e$ and $\gamma_1(1) = \gamma_2(1) = g$, the induced transports agree at $t = 1$:
 
-$$
-a_{\gamma_1}(1) = a_{\gamma_2}(1).
-$$
+$$a_{\gamma_1}(1) = a_{\gamma_2}(1).$$
 
 **Definition 3.2** (Endpoint Map). Under the endpoint condition, define $\rho: G^0 \to A$ by
 
-$$
-\rho(g) := a_\gamma(1),
-$$
+$$\rho(g) := a_\gamma(1),$$
 
 where $\gamma$ is any continuous path in $G^0$ from $e$ to $g$. Since $G^0$ is path-connected, such a path exists for every $g \in G^0$, and the endpoint condition guarantees that $\rho$ is independent of the choice of path.
 
@@ -132,9 +114,7 @@ where $\gamma$ is any continuous path in $G^0$ from $e$ to $g$. Since $G^0$ is p
 
 We construct a path from $e$ to $g_1 g_2$ in two stages. First traverse $\gamma_2$ (going $e \to g_2$), then apply the "shifted" path $g_2 \mapsto g_1 g_2$ corresponding to $\gamma_1$. Formally, define:
 
-$$
-\tilde{\gamma}(t) = \begin{cases} \gamma_2(2t) & t \in [0, 1/2] \\ \gamma_1(2t-1) \cdot g_2 & t \in [1/2, 1] \end{cases}
-$$
+$$\tilde{\gamma}(t) = \begin{cases} \gamma_2(2t) & t \in [0, 1/2] \\ \gamma_1(2t-1) \cdot g_2 & t \in [1/2, 1] \end{cases}$$
 
 This is continuous (at $t = 1/2$: $\gamma_1(0) \cdot g_2 = e \cdot g_2 = g_2 = \gamma_2(1)$), starts at $\tilde{\gamma}(0) = e$, and ends at $\tilde{\gamma}(1) = g_1 \cdot g_2$.
 
@@ -146,15 +126,11 @@ Now consider the induced paths in $X$. For any $x \in X$, the path $\tilde{\gamm
 
 Combining both segments:
 
-$$
-F(g_1 g_2 \cdot x) = \rho(g_1) \cdot F(g_2 \cdot x) = \rho(g_1) \cdot \rho(g_2) \cdot F(x).
-$$
+$$F(g_1 g_2 \cdot x) = \rho(g_1) \cdot F(g_2 \cdot x) = \rho(g_1) \cdot \rho(g_2) \cdot F(x).$$
 
 On the other hand, by definition of the endpoint map applied to the path $\tilde{\gamma}$ from $e$ to $g_1 g_2$:
 
-$$
-F(g_1 g_2 \cdot x) = \rho(g_1 g_2) \cdot F(x).
-$$
+$$F(g_1 g_2 \cdot x) = \rho(g_1 g_2) \cdot F(x).$$
 
 Since this holds for all $x \in X$ and all $F(x) \in Z$, we conclude $\rho(g_1 g_2) = \rho(g_1) \cdot \rho(g_2)$.
 
@@ -162,15 +138,11 @@ Since this holds for all $x \in X$ and all $F(x) \in Z$, we conclude $\rho(g_1 g
 
 Consider the concatenation $\gamma \| \bar{\gamma}$, which is a path from $e$ to $e$ (a closed loop). The endpoint condition applied to the constant path $c(t) = e$ and the loop $\gamma \| \bar{\gamma}$ gives:
 
-$$
-a_{\gamma \| \bar{\gamma}}(1) = \rho(e) = e_A.
-$$
+$$a_{\gamma \| \bar{\gamma}}(1) = \rho(e) = e_A.$$
 
 By the composition of transports along the concatenation:
 
-$$
-a_{\gamma \| \bar{\gamma}}(1) = a_{\bar{\gamma}}(1) \cdot a_\gamma(1) = \rho(g^{-1}) \cdot \rho(g).
-$$
+$$a_{\gamma \| \bar{\gamma}}(1) = a_{\bar{\gamma}}(1) \cdot a_\gamma(1) = \rho(g^{-1}) \cdot \rho(g).$$
 
 Therefore $\rho(g^{-1}) \cdot \rho(g) = e_A$, which gives $\rho(g^{-1}) = \rho(g)^{-1}$.
 
@@ -180,9 +152,7 @@ This completes the proof that $\rho$ is a group homomorphism. $\square$
 
 **Theorem 4.2** (Recovery of Classical Group Equivariance). *Let $G \curvearrowright X$ and $A \curvearrowright Z$. Let $F: X \to Z$ be path equivariant with respect to the group path system $\mathcal{P}$ with base-point independent transport, and assume the endpoint condition holds. Then:*
 
-$$
-F(g \cdot x) = \rho(g) \cdot F(x) \quad \forall g \in G^0,\; x \in X,
-$$
+$$F(g \cdot x) = \rho(g) \cdot F(x) \quad \forall g \in G^0,\; x \in X,$$
 
 *where $\rho: G^0 \to A$ is the endpoint map, which is a continuous group homomorphism by Proposition 4.1. This is the classical group equivariance law on $G^0$.*
 
@@ -190,35 +160,25 @@ $$
 
 Consider the group path in $X$:
 
-$$
-\gamma_X(t) := \gamma(t) \cdot x.
-$$
+$$\gamma_X(t) := \gamma(t) \cdot x.$$
 
 This satisfies $\gamma_X(0) = e \cdot x = x$ and $\gamma_X(1) = g \cdot x$, and belongs to the group path system $\mathcal{P}$.
 
 Since $F$ is path equivariant, there exists a continuous transport $a_\gamma: [0,1] \to A$ with $a_\gamma(0) = e_A$ such that:
 
-$$
-F(\gamma_X(t)) = a_\gamma(t) \cdot F(\gamma_X(0)) = a_\gamma(t) \cdot F(x) \quad \forall t \in [0,1].
-$$
+$$F(\gamma_X(t)) = a_\gamma(t) \cdot F(\gamma_X(0)) = a_\gamma(t) \cdot F(x) \quad \forall t \in [0,1].$$
 
 Evaluating at $t = 1$:
 
-$$
-F(g \cdot x) = F(\gamma_X(1)) = a_\gamma(1) \cdot F(x).
-$$
+$$F(g \cdot x) = F(\gamma_X(1)) = a_\gamma(1) \cdot F(x).$$
 
 By the endpoint condition and the definition of $\rho$ (Definition 3.2):
 
-$$
-a_\gamma(1) = \rho(g).
-$$
+$$a_\gamma(1) = \rho(g).$$
 
 Therefore:
 
-$$
-F(g \cdot x) = \rho(g) \cdot F(x).
-$$
+$$F(g \cdot x) = \rho(g) \cdot F(x).$$
 
 Since $g \in G^0$ and $x \in X$ were arbitrary, this establishes the classical equivariance law on the identity component $G^0$. $\square$
 
@@ -229,7 +189,6 @@ Since $g \in G^0$ and $x \in X$ were arbitrary, this establishes the classical e
 The recovery theorem establishes a precise hierarchy of equivariance conditions:
 
 - **Path equivariance** (Definition 2.5) is the most general: the transport $a_\gamma$ may depend on the entire path $\gamma$, not just its endpoints.
-
 - **Classical group equivariance** $F(g \cdot x) = \rho(g) \cdot F(x)$ is recovered when the endpoint condition holds: the transport depends only on the endpoint $g = \gamma(1)$, not on the path taken.
 
 The endpoint condition has a natural geometric interpretation. Given two paths $\gamma_1, \gamma_2$ from $e$ to $g$, the concatenation $\gamma_1 \| \gamma_2^{-1}$ is a closed loop at $e$. The endpoint condition requires $a_{\gamma_1}(1) = a_{\gamma_2}(1)$, i.e., the transport around any closed loop is trivial. In the language of differential geometry, this corresponds to **trivial holonomy**, or equivalently, a **flat connection** on the associated principal bundle.
