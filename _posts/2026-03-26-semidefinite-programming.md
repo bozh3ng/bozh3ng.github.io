@@ -281,7 +281,7 @@ So we have a SDP:
 $$
 \begin{array}{ll}
 \text { maximize } & x^T \Sigma x \\
-\text { subject to } & \|x\|_2=1 \\
+\text { subject to } & \lVert x\rVert_2=1 \\
 & \operatorname{Card}(x) \leq k
 \end{array}
 
@@ -294,7 +294,7 @@ Consider $X=x x^T$ :
 
 - $X \succeq 0$
 - $\operatorname{Rank}(X)=1$
-- $\|x\|_2=1 \Leftrightarrow \operatorname{Tr}(X)=1$
+- $\lVert x\rVert_2=1 \Leftrightarrow \operatorname{Tr}(X)=1$
 - $\operatorname{Card}(x) \leq k \Leftrightarrow \operatorname{Card}(X) \leq k^2$
 - $x^T \Sigma x=\operatorname{Tr}(\Sigma X)$
 
@@ -312,15 +312,15 @@ $$
 $$
 
 Now the convex objective $x^T \Sigma x$ becomes linear objective $\operatorname{Tr}(\Sigma X)$
-Nonconvex constraint $\|x\|_2=1$ becomes linear constraint $\operatorname{Tr}(X)=1$
+Nonconvex constraint $\lVert x\rVert_2=1$ becomes linear constraint $\operatorname{Tr}(X)=1$
 But problem is still nonconvex. We need to relax the rank and cardinality constraints
 
 ### Semidefinite relaxation
-$X=x x^T$ and $\operatorname{Tr}(X)=1 \Rightarrow\|X\|_F=1$
-$x \in \mathbb{R}^n, \operatorname{Card}(x)=k \Rightarrow\|x\|_1 \leq \sqrt{k}\|x\|_2$
-$\operatorname{Card}(X) \leq k^2 \Rightarrow \mathbf{1}^T|X| \mathbf{1} \leq k\|X\|_F=k$
+$X=x x^T$ and $\operatorname{Tr}(X)=1 \Rightarrow\lVert X\rVert_F=1$
+$x \in \mathbb{R}^n, \operatorname{Card}(x)=k \Rightarrow\lVert x\rVert_1 \leq \sqrt{k}\lVert x\rVert_2$
+$\operatorname{Card}(X) \leq k^2 \Rightarrow \mathbf{1}^T|X| \mathbf{1} \leq k\lVert X\rVert_F=k$
 
-This is the matrix analogue of the $\ell_1$ relaxation of the $\ell_0$ constraint in compressed sensing: just as $\|x\|_1 \leq \sqrt{k}\|x\|_2$ holds when $\operatorname{Card}(x) \leq k$ (reverse Cauchy-Schwarz for sparse vectors), the constraint $\mathbf{1}^T|X|\mathbf{1} \leq k$ is a convex surrogate for the combinatorial cardinality bound.
+This is the matrix analogue of the $\ell_1$ relaxation of the $\ell_0$ constraint in compressed sensing: just as $\lVert x\rVert_1 \leq \sqrt{k}\lVert x\rVert_2$ holds when $\operatorname{Card}(x) \leq k$ (reverse Cauchy-Schwarz for sparse vectors), the constraint $\mathbf{1}^T|X|\mathbf{1} \leq k$ is a convex surrogate for the combinatorial cardinality bound.
 
 Relaxed SDP for PCA:
 

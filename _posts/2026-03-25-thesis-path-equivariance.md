@@ -143,7 +143,7 @@ Groups are easy to represent in code: matrices, permutations, discrete sets. Man
 
 *Content paths → loss function.* We don't need an explicit manifold parameterization. We need pairs of nearby points and a loss that encourages smooth variation between them. The simplest approach is Laplacian regularization over a nearest-neighbor graph: 
 
-$$\mathcal{L}_{\text{smooth}} = \sum_{(i,j) \in \text{neighbors}} \|F(x_i) - F(x_j)\|^2.$$
+$$\mathcal{L}_{\text{smooth}} = \sum_{(i,j) \in \text{neighbors}} \lVert F(x_i) - F(x_j)\rVert^2.$$
 
 If a generative model is available, we can construct explicit interpolation paths in latent space and penalize non-smooth variation of $F$ along them. Methods like SimCLR and VICReg already enforce a version of this implicitly: augmentation invariance handles pose paths, while the contrastive or regularization objective structures content paths. The path equivariance framework gives a geometric interpretation of why these methods work.
 

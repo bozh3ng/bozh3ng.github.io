@@ -23,14 +23,14 @@ To address this, we define sharpness on the quotient manifold $\mathcal{M}=\Thet
 Compared with full-space sharpness:
 
 $$
-S_{\text {full }}^\epsilon(\theta)=\max _{\delta \in \mathbb{R}^d,\|\delta\| \leq \epsilon}[L(\theta+\delta)-L(\theta)]
+S_{\text {full }}^\epsilon(\theta)=\max _{\delta \in \mathbb{R}^d,\lVert \delta\rVert \leq \epsilon}[L(\theta+\delta)-L(\theta)]
 
 $$
 
 we define quotient sharpness:
 
 $$
-S_{\text {quot }}^\epsilon(\theta)=\max _{\delta \in \mathcal{H}_\theta,\|\delta\| \leq \epsilon}[L(\theta+\delta)-L(\theta)]
+S_{\text {quot }}^\epsilon(\theta)=\max _{\delta \in \mathcal{H}_\theta,\lVert \delta\rVert \leq \epsilon}[L(\theta+\delta)-L(\theta)]
 
 $$
 

@@ -50,7 +50,7 @@ The key insight: classical equivariance relates *isolated pairs of points* $(x, 
 
 If $\gamma_1, \gamma_2$ are paths with $\gamma_1(1) = \gamma_2(0)$, their concatenation is:
 
-$$(\gamma_1 \| \gamma_2)(t) = \begin{cases} \gamma_1(2t) & t \in [0, 1/2] \\ \gamma_2(2t - 1) & t \in [1/2, 1] \end{cases}$$
+$$(\gamma_1 \parallel  \gamma_2)(t) = \begin{cases} \gamma_1(2t) & t \in [0, 1/2] \\ \gamma_2(2t - 1) & t \in [1/2, 1] \end{cases}$$
 
 **Definition 2.2** (Path System). A path system on a topological space $X$ is a non-empty family of continuous paths $\gamma: [0,1] \to X$ that is closed under reparametrization and concatenation.
 
@@ -68,7 +68,7 @@ $$(\gamma_X \circ \phi)(t) = \gamma_G(\phi(t)) \cdot x = \tilde{\gamma}_G(t) \cd
 
 **Concatenation.** Let $\gamma_{X,1}(t) = \gamma_{G,1}(t) \cdot x_1$ and $\gamma_{X,2}(t) = \gamma_{G,2}(t) \cdot x_2$ be in $\mathcal{P}$ with $\gamma_{X,1}(1) = \gamma_{X,2}(0)$. The matching condition gives $\gamma_{G,1}(1) \cdot x_1 = e \cdot x_2 = x_2$, so $x_2 = \gamma_{G,1}(1) \cdot x_1$. The concatenation is:
 
-$$(\gamma_{X,1} \| \gamma_{X,2})(t) = \begin{cases} \gamma_{G,1}(2t) \cdot x_1 & t \in [0, 1/2] \\ \gamma_{G,2}(2t-1) \cdot \gamma_{G,1}(1) \cdot x_1 & t \in [1/2, 1] \end{cases}$$
+$$(\gamma_{X,1} \parallel  \gamma_{X,2})(t) = \begin{cases} \gamma_{G,1}(2t) \cdot x_1 & t \in [0, 1/2] \\ \gamma_{G,2}(2t-1) \cdot \gamma_{G,1}(1) \cdot x_1 & t \in [1/2, 1] \end{cases}$$
 
 Define the concatenated group path:
 
@@ -78,7 +78,7 @@ We verify: $\tilde{\gamma}_G(0) = \gamma_{G,1}(0) = e$; and continuity at $t = 1
 
 $$\lim_{t \to 1/2^+} \tilde{\gamma}_G(t) = \gamma_{G,2}(0) \cdot \gamma_{G,1}(1) = e \cdot \gamma_{G,1}(1) = \gamma_{G,1}(1) = \lim_{t \to 1/2^-} \tilde{\gamma}_G(t).$$
 
-Therefore $(\gamma_{X,1} \| \gamma_{X,2})(t) = \tilde{\gamma}_G(t) \cdot x_1 \in \mathcal{P}$. $\square$
+Therefore $(\gamma_{X,1} \parallel  \gamma_{X,2})(t) = \tilde{\gamma}_G(t) \cdot x_1 \in \mathcal{P}$. $\square$
 
 **Definition 2.5** (Path Equivariance). Let $G \curvearrowright X$, let $A$ be a Lie group acting on a manifold $Z$, and let $\mathcal{P}$ be a path system on $X$. A continuous map $F: X \to Z$ is **path equivariant** with respect to $\mathcal{P}$ if for every $\gamma \in \mathcal{P}$, there exists a continuous transport $a_\gamma: [0,1] \to A$ with $a_\gamma(0) = e_A$ such that
 
@@ -136,13 +136,13 @@ Since this holds for all $x \in X$ and all $F(x) \in Z$, we conclude $\rho(g_1 g
 
 **(iii) Inverses.** Let $g \in G^0$ and let $\gamma: [0,1] \to G^0$ be a path from $e$ to $g$. Define the reversed group path $\bar{\gamma}(t) := \gamma(1-t) \cdot \gamma(1)^{-1}$, which satisfies $\bar{\gamma}(0) = \gamma(1) \cdot \gamma(1)^{-1} = e$ and $\bar{\gamma}(1) = \gamma(0) \cdot g^{-1} = g^{-1}$.
 
-Consider the concatenation $\gamma \| \bar{\gamma}$, which is a path from $e$ to $e$ (a closed loop). The endpoint condition applied to the constant path $c(t) = e$ and the loop $\gamma \| \bar{\gamma}$ gives:
+Consider the concatenation $\gamma \parallel  \bar{\gamma}$, which is a path from $e$ to $e$ (a closed loop). The endpoint condition applied to the constant path $c(t) = e$ and the loop $\gamma \parallel  \bar{\gamma}$ gives:
 
-$$a_{\gamma \| \bar{\gamma}}(1) = \rho(e) = e_A.$$
+$$a_{\gamma \parallel  \bar{\gamma}}(1) = \rho(e) = e_A.$$
 
 By the composition of transports along the concatenation:
 
-$$a_{\gamma \| \bar{\gamma}}(1) = a_{\bar{\gamma}}(1) \cdot a_\gamma(1) = \rho(g^{-1}) \cdot \rho(g).$$
+$$a_{\gamma \parallel  \bar{\gamma}}(1) = a_{\bar{\gamma}}(1) \cdot a_\gamma(1) = \rho(g^{-1}) \cdot \rho(g).$$
 
 Therefore $\rho(g^{-1}) \cdot \rho(g) = e_A$, which gives $\rho(g^{-1}) = \rho(g)^{-1}$.
 
@@ -191,7 +191,7 @@ The recovery theorem establishes a precise hierarchy of equivariance conditions:
 - **Path equivariance** (Definition 2.5) is the most general: the transport $a_\gamma$ may depend on the entire path $\gamma$, not just its endpoints.
 - **Classical group equivariance** $F(g \cdot x) = \rho(g) \cdot F(x)$ is recovered when the endpoint condition holds: the transport depends only on the endpoint $g = \gamma(1)$, not on the path taken.
 
-The endpoint condition has a natural geometric interpretation. Given two paths $\gamma_1, \gamma_2$ from $e$ to $g$, the concatenation $\gamma_1 \| \gamma_2^{-1}$ is a closed loop at $e$. The endpoint condition requires $a_{\gamma_1}(1) = a_{\gamma_2}(1)$, i.e., the transport around any closed loop is trivial. In the language of differential geometry, this corresponds to **trivial holonomy**, or equivalently, a **flat connection** on the associated principal bundle.
+The endpoint condition has a natural geometric interpretation. Given two paths $\gamma_1, \gamma_2$ from $e$ to $g$, the concatenation $\gamma_1 \parallel  \gamma_2^{-1}$ is a closed loop at $e$. The endpoint condition requires $a_{\gamma_1}(1) = a_{\gamma_2}(1)$, i.e., the transport around any closed loop is trivial. In the language of differential geometry, this corresponds to **trivial holonomy**, or equivalently, a **flat connection** on the associated principal bundle.
 
 This perspective suggests an intermediate notion, **homotopy equivariance**, where the transport depends only on the homotopy class of the path. Homotopic paths induce the same transport, but non-homotopic paths to the same endpoint may differ. When $G^0$ is simply connected, every two paths with the same endpoints are homotopic, and homotopy equivariance coincides with the endpoint condition. When $G^0$ has non-trivial fundamental group $\pi_1(G^0, e)$, the holonomy around topologically distinct loops may be non-trivial, yielding a strictly intermediate framework.
 

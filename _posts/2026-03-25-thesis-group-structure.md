@@ -124,15 +124,15 @@ To analyze this cleanly, consider a linear autoencoder (encoder $f(x) = Wx$, dec
 
 We study the general loss:
 
-$$\mathcal{L}(f, g) = \sum_{x} \left[ L(x, g(f(x))) + \lambda_E\|J_f(x)\|_E + \lambda_D\|J_g(f(x))\|_D \right]$$
+$$\mathcal{L}(f, g) = \sum_{x} \left[ L(x, g(f(x))) + \lambda_E\lVert J_f(x)\rVert_E + \lambda_D\lVert J_g(f(x))\rVert_D \right]$$
 
-where $\|\cdot\|_E$ and $\|\cdot\|_D$ are matrix norms on the encoder and decoder Jacobians. Under the map $K$, the Jacobians become $J_{f'} = KJ_f$ and $J_{g'} = J_g K^{-1}$. The residual symmetry group is determined by which $K$ leave both norm terms unchanged, the intersection of the left-isometry group of $\|\cdot\|_E$ and the right-isometry group of $\|\cdot\|_D$.
+where $\lVert \cdot\rVert_E$ and $\lVert \cdot\rVert_D$ are matrix norms on the encoder and decoder Jacobians. Under the map $K$, the Jacobians become $J_{f'} = KJ_f$ and $J_{g'} = J_g K^{-1}$. The residual symmetry group is determined by which $K$ leave both norm terms unchanged, the intersection of the left-isometry group of $\lVert \cdot\rVert_E$ and the right-isometry group of $\lVert \cdot\rVert_D$.
 
 The question thus reduces to: for which invertible $K$ does 
 
-$$\|K A\|_p=\|A\|_p$$
+$$\lVert K A\rVert_p=\lVert A\rVert_p$$
 
-hold for every matrix $A$ ? That is, which linear maps are isometries of the matrix norm $\|\cdot\|_p$ ? The answer depends on the geometry of the norm's unit ball, and this is where the choice of norm becomes decisive.
+hold for every matrix $A$ ? That is, which linear maps are isometries of the matrix norm $\lVert \cdot\rVert_p$ ? The answer depends on the geometry of the norm's unit ball, and this is where the choice of norm becomes decisive.
 
 ### Frobenius / Schatten-$p$ norms → orthogonal group
 

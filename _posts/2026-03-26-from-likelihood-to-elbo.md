@@ -352,12 +352,12 @@ $$
 &=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y, x)\right]-\mathbb{E}_{q_\phi(x \mid y)}\left[\log q_\phi(x \mid y)\right]\\
 &=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)+\log p(x)\right]-\mathbb{E}_{q_\phi(x \mid y)}\left[\log q_\phi(x \mid y)\right]\\
 &=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]+\mathbb{E}_{q_\phi(x \mid y)}\left[\log p(x)-\log q_\phi(x \mid y)\right]\\
-&=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)
+&=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \lVert  p(x)\right)
 \end{aligned}
 
 $$
 
-where $\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)$ is called **ELBO**.
+where $\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \lVert  p(x)\right)$ is called **ELBO**.
 
 Note: Here we define KL divergence $D_{KL}$, which measures the difference between two probability distributions (but not a distance). There are many ways to measure differences between probabilities, KL divergence is a good one: analogously, it is the "Euclidean distance" in probability space.
 
@@ -405,7 +405,7 @@ $$
 This gives us the key equation:
 
 $$
-\log p_\theta(y)=\operatorname{ELBO}(\theta, \phi ; y)+D_{K L}\left(q_\phi(x \mid y) \| p_\theta(x\mid y)\right)
+\log p_\theta(y)=\operatorname{ELBO}(\theta, \phi ; y)+D_{K L}\left(q_\phi(x \mid y) \lVert  p_\theta(x\mid y)\right)
 
 $$
 
@@ -424,7 +424,7 @@ $$
 Therefore:
 
 $$
-\frac{\partial}{\partial \phi} \operatorname{ELBO}(\theta, \phi ; y)=-\frac{\partial}{\partial \phi} D_{K L}\left(q_\phi(x \mid y) \| p_\theta(x \mid y)\right)
+\frac{\partial}{\partial \phi} \operatorname{ELBO}(\theta, \phi ; y)=-\frac{\partial}{\partial \phi} D_{K L}\left(q_\phi(x \mid y) \lVert  p_\theta(x \mid y)\right)
 
 $$
 
@@ -444,7 +444,7 @@ $$
 Recall the ELBO formula:
 
 $$
-\operatorname{ELBO}(\theta, \phi ; y)=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)
+\operatorname{ELBO}(\theta, \phi ; y)=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \lVert  p(x)\right)
 
 $$
 

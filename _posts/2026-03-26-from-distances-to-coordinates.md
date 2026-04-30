@@ -95,7 +95,7 @@ $$\tilde{G}:=X^TX\in\mathbb{R}^{n\times n}$$
 
 Thus $\operatorname{rank}(\tilde{G})=\operatorname{rank}\left(X^T X\right)=\operatorname{rank}(X)=d$
 
-Remark: The entries of the Gram matrix are inner products: $\tilde{G}_{ij} = \langle x_i, x_j \rangle$. This makes the PSD property immediate -- Gram matrices are always PSD by construction ($x^T \tilde{G} x = x^T X^T X x = \|Xx\|^2 \geq 0$).
+Remark: The entries of the Gram matrix are inner products: $\tilde{G}_{ij} = \langle x_i, x_j \rangle$. This makes the PSD property immediate -- Gram matrices are always PSD by construction ($x^T \tilde{G} x = x^T X^T X x = \lVert Xx\rVert^2 \geq 0$).
 
 In practice, we often observe pairwise distances rather than coordinates. Given $D^{(2)} \in \mathbb{R}^{n \times n}$ as the pointwise squared distance matrix, $D^{(2)}$ is symmetric (i.e., $D^{(2)} \in S^n$), but not necessarily PSD.
 
@@ -114,7 +114,7 @@ According to classical multidimensional scaling (cMDS), the Gram matrix can be r
 
 $$\tilde{G}=-\frac{1}{2} J D^{(2)} J$$
 
-The key idea: expanding $D^{(2)}_{ij} = \|x_i - x_j\|^2 = \|x_i\|^2 - 2\langle x_i, x_j \rangle + \|x_j\|^2$ and applying the centering matrix $J$ eliminates the squared-norm terms, leaving only the inner products $\tilde{G}_{ij} = \langle x_i, x_j \rangle$.
+The key idea: expanding $D^{(2)}_{ij} = \lVert x_i - x_j\rVert^2 = \lVert x_i\rVert^2 - 2\langle x_i, x_j \rangle + \lVert x_j\rVert^2$ and applying the centering matrix $J$ eliminates the squared-norm terms, leaving only the inner products $\tilde{G}_{ij} = \langle x_i, x_j \rangle$.
 
 Recall gram matrix is defined as $\tilde{G}:=X^TX\in\mathbb{R}^{n\times n}$, so our goal is to find a $\hat{X}$ has structure  $\tilde{G}=\hat{X}^T \hat{X}$.  In this case, $\hat{X}$ is a rigid transformation of the original points 
 

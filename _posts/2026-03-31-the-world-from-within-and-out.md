@@ -60,13 +60,13 @@ In machine learning, given two points $x, y$, a kernel $k(x, y)$ measures how co
 In the Gaussian Process context, a kernel must be a covariance function, which is equivalent to saying a kernel must be symmetric positive semi-definite (PSD). Choosing a kernel is choosing what kind of distribution we assume before seeing data. For example, the squared exponential (SE) kernel assumes that nearby points are highly correlated and the correlation decays smoothly like a Gaussian bell curve. A widely-used SE kernel formula is
 
 $$
-k(x, y)=\sigma^2 \exp \left(-\frac{\|x-y\|^2}{2 \ell^2}\right)
+k(x, y)=\sigma^2 \exp \left(-\frac{\lVert x-y\rVert^2}{2 \ell^2}\right)
 
 $$
 
 where $\sigma^2$ controls how much $f$ varies overall, and $\ell$ controls how quickly the correlation decays with distance. They are hyperparameters. 
 
-But what does $\|x-y\|^2$ mean? It is the squared Euclidean distance.
+But what does $\lVert x-y\rVert^2$ mean? It is the squared Euclidean distance.
 
 So when we write this formula, we implicitly use the flat Euclidean metric as the measure of similarity. 
 
