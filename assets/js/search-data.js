@@ -30,9 +30,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-part-2-5-a-sharp-generalization-bound",
+        },{id: "post-part2-5-asharpgeneralizationbound",
         
-          title: "Part 2.5 - A Sharp Generalization Bound",
+          title: "Part2.5-ASharpGeneralizationBound",
         
         description: "Orbit directions are trivially flat, inflating sharpness estimates. Quotient-space sharpness factors out reparametrization symmetry for tighter generalization bounds.",
         section: "Posts",
@@ -41,9 +41,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-sharp-generalization-bound/";
           
         },
-      },{id: "post-part-3-5-path-equivariance-recovery-proof",
+      },{id: "post-part3-5-perecoveryproof",
         
-          title: "Part 3.5 - Path Equivariance Recovery Proof",
+          title: "Part3.5-PERecoveryProof",
         
         description: "A complete proof that classical group equivariance is recovered from path equivariance under the endpoint condition, establishing classical equivariant networks as a special case of the PEN framework.",
         section: "Posts",
@@ -52,9 +52,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-pe-recovery-proof/";
           
         },
-      },{id: "post-pml-1-map-mle-latent-variables-and-two-kinds-of-kl",
+      },{id: "post-pml-1-map-mle-kl",
         
-          title: "PML-1: MAP, MLE, Latent Variables, and Two Kinds of KL",
+          title: "PML-1 MAP MLE KL",
         
         description: "MAP vs MLE as point estimates, global parameters vs per-example latent variables, the ELBO, and why the two directions of KL divergence give fundamentally different approximations.",
         section: "Posts",
@@ -63,9 +63,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/pml-1/";
           
         },
-      },{id: "post-part-5-pen-holonomy-and-the-single-tangent-space-fallacy",
+      },{id: "post-part5-penholonomyandsingletangentfallacy",
         
-          title: "Part 5 - PEN, Holonomy, and the Single Tangent Space Fallacy",
+          title: "Part5-PENHolonomyandSingleTangentFallacy",
         
         description: "Path equivariant networks via parallel transport, holonomy-controlled expressivity, and why the single tangent space approach fails on curved manifolds.",
         section: "Posts",
@@ -74,9 +74,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-pen-holonomy/";
           
         },
-      },{id: "post-the-world-from-within-and-out",
+      },{id: "post-theworldfromwithinandwithout",
         
-          title: "The World From Within and Out",
+          title: "TheWorldFromWithinAndWithout",
         
         description: "Intrinsic and extrinsic perspectives in mathematics, physics, and philosophy.",
         section: "Posts",
@@ -107,9 +107,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/independence-bayesian-networks/";
           
         },
-      },{id: "post-from-likelihood-to-elbo",
+      },{id: "post-pml-2-from-likelihood-to-elbo",
         
-          title: "From Likelihood to ELBO",
+          title: "PML-2 From Likelihood to ELBO",
         
         description: "The probabilistic ML pipeline: notation, likelihood, ELBO derivation, and the reparameterization trick for VAEs.",
         section: "Posts",
@@ -140,9 +140,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/yoneda-perspective/";
           
         },
-      },{id: "post-part-1-prior-knowledge",
+      },{id: "post-part1-priorknowledge",
         
-          title: "Part 1 - Prior Knowledge",
+          title: "Part1-PriorKnowledge",
         
         description: "Prior knowledge in neural networks: every design choice encodes a structural assumption about the world.",
         section: "Posts",
@@ -151,9 +151,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-prior-knowledge/";
           
         },
-      },{id: "post-part-3-path-equivariance-from-groups-to-geometry",
+      },{id: "post-part3-pathequivariance",
         
-          title: "Part 3 - Path Equivariance: From Groups to Geometry",
+          title: "Part3-PathEquivariance",
         
         description: "Generalizing group equivariance to path equivariance on manifolds, with fiber bundles and the content-pose decomposition.",
         section: "Posts",
@@ -162,9 +162,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-path-equivariance/";
           
         },
-      },{id: "post-part-2-the-group-structure-of-neural-networks",
+      },{id: "post-part2-groupstructure",
         
-          title: "Part 2 - The Group Structure of Neural Networks",
+          title: "Part2-GroupStructure",
         
         description: "How activation functions and regularization break the symmetry group of deep networks, traced from GL(n) through specific subgroups.",
         section: "Posts",
@@ -173,9 +173,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-group-structure/";
           
         },
-      },{id: "post-parr-4-a-category-theory-perspective-on-neural-networks",
+      },{id: "post-part4-categorytheoryperspective",
         
-          title: "Parr 4 - A Category Theory Perspective on Neural Networks",
+          title: "Part4-CategoryTheoryPerspective",
         
         description: "Equivariance is naturality: unifying groups, manifolds, and path equivariance through category theory.",
         section: "Posts",
@@ -184,9 +184,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/thesis-category-theory/";
           
         },
-      },{id: "post-pushforward-and-pullback",
+      },{id: "post-pushforward-pullback",
         
-          title: "Pushforward and Pullback",
+          title: "Pushforward Pullback",
         
         description: "Pushforward and pullback in differential geometry and probability, with the duality between vectors and forms.",
         section: "Posts",
@@ -228,9 +228,9 @@ ninja.data = [{
             window.location.href = "/blog/2025/product/";
           
         },
-      },{id: "post-probability",
+      },{id: "post-probability-0",
         
-          title: "Probability",
+          title: "Probability-0",
         
         description: "Probability spaces, conditional probability, random variables, independence, and expectation from measure theory.",
         section: "Posts",
@@ -239,9 +239,9 @@ ninja.data = [{
             window.location.href = "/blog/2025/probability/";
           
         },
-      },{id: "post-principal-component-analysis",
+      },{id: "post-pca",
         
-          title: "Principal Component Analysis",
+          title: "PCA",
         
         description: "PCA as eigendecomposition of the covariance matrix, its SVD implementation, and why it works.",
         section: "Posts",
@@ -272,9 +272,9 @@ ninja.data = [{
             window.location.href = "/blog/2025/monoid/";
           
         },
-      },{id: "post-abstract-algebra",
+      },{id: "post-group-ring-field",
         
-          title: "Abstract Algebra",
+          title: "Group Ring Field",
         
         description: "Groups, rings, fields, and ideals — with the Euclidean GCD algorithm as a use case.",
         section: "Posts",
