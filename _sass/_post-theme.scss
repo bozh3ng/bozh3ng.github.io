@@ -1,0 +1,118 @@
+// Medium-inspired article theme.
+// Scoped to .post-content so it only affects the article body, not
+// navigation, cards, or other site-wide elements.
+
+.post .post-content {
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  line-height: 1.8;
+
+  // Headings use sans-serif for contrast with the serif body
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Source Sans 3", -apple-system, sans-serif;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+  }
+
+  // Generous paragraph spacing
+  p {
+    margin-bottom: 1.4em;
+    letter-spacing: -0.003em;
+  }
+
+  // Section divider with three dots (Medium style)
+  hr {
+    border: none;
+    background: none;
+    text-align: center;
+    margin: 2.5em 0;
+    height: auto;
+
+    &::before {
+      content: "...";
+      font-size: 28px;
+      letter-spacing: 0.6em;
+      color: var(--global-text-color-light);
+    }
+  }
+
+  // Blockquotes: accent border in theme color
+  blockquote {
+    border-left: 3px solid var(--global-text-color);
+    padding-left: 20px;
+    font-style: italic;
+    margin: 1.5em 0;
+    color: var(--global-text-color-light);
+  }
+
+  // Math gets breathing room
+  .MathJax,
+  .katex {
+    font-size: 1.05em;
+  }
+
+  .MathJax_Display,
+  .math-block,
+  .katex-display,
+  mjx-container[display="true"] {
+    margin: 1.6em 0 !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  // Links: subtle underline that strengthens on hover
+  a {
+    text-decoration: underline;
+    text-decoration-color: var(--global-divider-color);
+    text-underline-offset: 2px;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+
+  // Monospace code uses JetBrains Mono
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  }
+
+  pre {
+    line-height: 1.5;
+  }
+
+  // Lists: relaxed spacing
+  ul,
+  ol {
+    li {
+      margin-bottom: 0.5em;
+      line-height: 1.7;
+    }
+  }
+}
