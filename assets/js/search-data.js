@@ -30,6 +30,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
+        },{id: "nav-flappy",
+          title: "flappy",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/flappy/";
+          },
         },{id: "post-part2-5-asharpgeneralizationbound",
         
           title: "Part2.5-ASharpGeneralizationBound",
