@@ -164,6 +164,11 @@ pagination:
       <p class="post-meta">
         {{ read_time }} min read &nbsp; &middot; &nbsp;
         {{ post.date | date: '%B %d, %Y' }}
+        &nbsp; &middot; &nbsp;
+        <span class="post-thumb-indicator" data-post-thumb-url="{{ post.url }}" title="thumbs">
+          <i class="fa-regular fa-thumbs-up"></i>
+          <span class="post-thumb-indicator-count">0</span>
+        </span>
         {% if post.external_source %}
         &nbsp; &middot; &nbsp; {{ post.external_source }}
         {% endif %}

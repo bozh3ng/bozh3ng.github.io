@@ -45,13 +45,31 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    const likes = loadLikes();
+
+    // Populate thumb indicators on blog list
+    document.querySelectorAll(".post-thumb-indicator").forEach((indicator) => {
+      const url = indicator.dataset.postThumbUrl;
+      const countEl = indicator.querySelector(".post-thumb-indicator-count");
+      const iconEl = indicator.querySelector("i");
+      const count = likes[url] ? 1 : 0;
+      if (countEl) countEl.textContent = count;
+      if (count > 0) {
+        indicator.classList.add("liked");
+        if (iconEl) {
+          iconEl.classList.remove("fa-regular");
+          iconEl.classList.add("fa-solid");
+        }
+      }
+    });
+
+    // Post page thumb button behavior
     const button = document.querySelector(".post-thumb-button");
     if (!button) return;
 
     const postUrl = button.dataset.postUrl;
     const countEl = button.querySelector(".post-thumb-count");
     const iconEl = button.querySelector("i");
-    const likes = loadLikes();
 
     const liked = !!likes[postUrl];
     if (liked) {
